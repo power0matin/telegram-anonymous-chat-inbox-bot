@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="icon-title icon-desc">
+  <title id="icon-title">WhisprLink</title>
+  <desc id="icon-desc">Two angled strokes form a W. An orange message shape with one square corner sits between them as the link.</desc>
+  <style>
+    .ink { stroke: #18211F; }
+    @media (prefers-color-scheme: dark) { .ink { stroke: #F4F2EA; } }
+  </style>
+  <g id="symbol">
+    <path id="voices" d="M16 31 L42 97 L54.5 65 M73.5 65 L86 97 L112 31" fill="none" class="ink" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="message" d="M51 40a12 12 0 0 1 24 0v12H63a12 12 0 0 1-12-12z" fill="#E56B45"/>
+  </g>
+</svg>

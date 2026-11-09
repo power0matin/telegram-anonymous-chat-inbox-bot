@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="434" height="96" viewBox="0 0 434 96" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">WhisprLink</title>
+  <desc id="logo-desc">WhisprLink logo: a W-shaped symbol with an orange message shape, followed by the WhisprLink wordmark.</desc>
+  <style>
+    .ink { stroke: #18211F; }
+    .word { fill: #18211F; }
+    @media (prefers-color-scheme: dark) { .ink { stroke: #F4F2EA; } .word { fill: #F4F2EA; } }
+  </style>
+  <g id="symbol" transform="translate(2.0 0.0) scale(0.75)">
+    <path id="voices" d="M16 31 L42 97 L54.5 65 M73.5 65 L86 97 L112 31" fill="none" class="ink" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="message" d="M51 40a12 12 0 0 1 24 0v12H63a12 12 0 0 1-12-12z" fill="#E56B45"/>
+  </g>
+  <text id="wordmark" x="120" y="67.6" class="word" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="600" letter-spacing="-0.5">WhisprLink</text>
+</svg>
