@@ -1,18 +1,66 @@
 # Development guide
 
-**Current state:** documentation and repository foundation only. The bot runtime does not exist yet.
+**Current state:** an executable Telegram bot scaffold is available. It validates environment settings, configures standard-library logging, starts aiogram in long-polling mode, and responds to the /start command. Inbox, random chat, persistence, and delivery workflows are not implemented.
 
 ## Target local environment
 
 - Python 3.12 or newer.
-- Docker Engine with Docker Compose plugin.
 - Git.
-- Telegram bot token for local development only.
-- PostgreSQL and Redis through disposable local services once the first application slice is introduced.
+- A Telegram bot token from BotFather for local smoke tests.
+- PostgreSQL and Redis will be introduced with the first persistence slice; the current scaffold does not connect to them.
+
+## Setup
+
+Create and activate a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Linux/macOS:
+
+```bash
+source .venv/bin/activate
+```
+
+Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Install the project and development dependencies:
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+```
+
+Copy .env.example to .env and set TELEGRAM_BOT_TOKEN. Never put a real token in Git, issue reports, screenshots, or CI logs.
+
+Run:
+
+```bash
+python -m whisprlink
+```
+
+The whisprlink console command is also installed by the editable package.
 
 ## Configuration
 
-The eventual application will use environment-based typed settings. .env.example is a placeholder contract, not a working configuration yet. Never commit .env.
+Settings are loaded from environment variables and, when present, .env. Field names map to the uppercase keys in .env.example. The Telegram token is required and represented as a secret value. The current runtime supports BOT_MODE=polling; webhook mode is rejected until webhook ingress and secret validation are implemented.
+
+Database and Redis settings are part of the configuration contract, but no connections are opened in this scaffold. DATA_RETENTION_DAYS is reserved for a future retention implementation and does not currently trigger data deletion.
+
+## Quality checks
+
+```bash
+ruff check .
+ruff format --check .
+pytest
+```
+
+GitHub Actions runs lint, formatting, and unit tests on Python 3.12 for pull requests and pushes to main.
 
 ## Engineering conventions
 
@@ -27,12 +75,6 @@ The eventual application will use environment-based typed settings. .env.example
 - Keep message content and secrets out of logs.
 - Test state transitions, authorization, concurrency, failure/retry paths, and media behavior.
 - Prefer small, focused pull requests with tests and documentation.
-
-## Planned quality gates
-
-Ruff lint/format, static type checking, unit tests, PostgreSQL integration and migration checks, Redis integration where relevant, end-to-end bot flow tests using mocked Telegram API boundaries, and security/dependency checks.
-
-CI will be added with the first executable code so every check validates real behavior rather than passing an empty placeholder pipeline.
 
 ## Before opening a pull request
 
