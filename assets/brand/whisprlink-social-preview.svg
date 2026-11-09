@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">WhisprLink — Anonymous conversations, on your terms</title>
+  <desc id="desc">Open-source Telegram bot for random anonymous chat, personal anonymous inboxes, and threaded replies.</desc>
+  <rect width="1280" height="640" fill="#171923"/>
+  <circle cx="1110" cy="80" r="260" fill="#29243D" opacity=".55"/>
+  <circle cx="150" cy="620" r="280" fill="#23263A" opacity=".55"/>
+  <rect x="104" y="116" width="106" height="106" rx="28" fill="#27283A" stroke="#4A4768" stroke-width="2"/>
+  <path d="M131 151c0-8 6-14 14-14h27c8 0 14 6 14 14v24c0 8-6 14-14 14h-14l-13 11v-11h-1c-8 0-13-6-13-14z" fill="none" stroke="#F4F3FA" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M145 158h27m-27 11h16" fill="none" stroke="#A99BFF" stroke-width="5" stroke-linecap="round"/>
+  <text x="104" y="300" fill="#A99BFF" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="4">OPEN-SOURCE TELEGRAM BOT</text>
+  <text x="100" y="390" fill="#F7F6FC" font-family="Inter,Arial,sans-serif" font-size="76" font-weight="700">WhisprLink</text>
+  <text x="104" y="448" fill="#C7C5D2" font-family="Inter,Arial,sans-serif" font-size="31">Anonymous conversations, on your terms.</text>
+  <g font-family="Inter,Arial,sans-serif" font-size="21" font-weight="600" fill="#E8E5F7">
+    <rect x="104" y="510" width="220" height="52" rx="26" fill="#292B3E" stroke="#47445F"/>
+    <text x="132" y="543">Random chat</text>
+    <rect x="342" y="510" width="250" height="52" rx="26" fill="#292B3E" stroke="#47445F"/>
+    <text x="370" y="543">Anonymous inbox</text>
+    <rect x="610" y="510" width="244" height="52" rx="26" fill="#292B3E" stroke="#47445F"/>
+    <text x="638" y="543">Threaded replies</text>
+  </g>
+</svg>
