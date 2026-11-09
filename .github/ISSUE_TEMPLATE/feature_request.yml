@@ -1,0 +1,50 @@
+name: Feature request
+description: Propose a focused improvement.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Start with the user problem. Discuss large changes before implementation.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: dropdown
+    id: area
+    attributes:
+      label: Product area
+      options:
+        - Personal inbox
+        - Threaded replies
+        - Random chat
+        - Media support
+        - Moderation and safety
+        - Operations
+        - Developer experience
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Additional considerations
+      options:
+        - label: This may affect privacy or data retention.
+        - label: This may affect moderation or abuse prevention.
+        - label: This may require a database migration.
