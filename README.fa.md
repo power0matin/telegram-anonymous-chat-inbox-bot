@@ -1,4 +1,9 @@
-# WhisprLink
+<h1 align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/brand/whisprlink-logo-dark.svg">
+    <img src="assets/brand/whisprlink-logo-light.svg" alt="WhisprLink" width="340">
+  </picture>
+</h1>
 
 <p align="center"><strong>گفت‌وگوی ناشناس، با اختیار خودت.</strong></p>
 <p align="center">پروژه متن‌باز برای ترکیب چت تصادفی دونفره، صندوق پیام ناشناس شخصی و پاسخ‌های زنجیره‌ای در تلگرام.</p>
@@ -36,6 +41,7 @@ PostgreSQL منبع اصلی وضعیت کاربران و مکالمات است.
 - [مدل داده](docs/DATA_MODEL.md)
 - [امنیت و حریم خصوصی](docs/SECURITY_AND_PRIVACY.md)
 - [نقشه راه](docs/ROADMAP.md)
+- [راهنمای برند](docs/BRAND_GUIDELINES.md)
 - [راهنمای توسعه](docs/DEVELOPMENT.md)
 - [مشارکت](CONTRIBUTING.md)
 

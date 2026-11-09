@@ -1,6 +1,9 @@
-# WhisprLink
-
-<h1 align="center">WhisprLink</h1>
+<h1 align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/brand/whisprlink-logo-dark.svg">
+    <img src="assets/brand/whisprlink-logo-light.svg" alt="WhisprLink" width="340">
+  </picture>
+</h1>
 <p align="center"><strong>Anonymous conversations, on your terms.</strong></p>
 <p align="center">An open-source Telegram bot combining random one-to-one chat, personal anonymous inboxes, and threaded replies.</p>
 <p align="center"><a href="README.fa.md">فارسی</a> · <a href="docs/PRODUCT_SPEC.md">Product spec</a> · <a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="CONTRIBUTING.md">Contributing</a> · <a href="SECURITY.md">Security</a></p>
@@ -52,6 +55,7 @@ Python + aiogram 3, async modular monolith, PostgreSQL + SQLAlchemy 2 + Alembic,
 - [Data model](docs/DATA_MODEL.md)
 - [Security and privacy](docs/SECURITY_AND_PRIVACY.md)
 - [Roadmap](docs/ROADMAP.md)
+- [Brand guidelines](docs/BRAND_GUIDELINES.md)
 - [Development guide](docs/DEVELOPMENT.md)
 - [Contributing](CONTRIBUTING.md) · [Security policy](SECURITY.md) · [Support](SUPPORT.md)
 
