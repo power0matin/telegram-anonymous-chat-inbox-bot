@@ -8,15 +8,15 @@ A milestone is complete only when its acceptance criteria and tests pass.
 - [ ] Finalize age policy, retention periods, and deployment mode.
 
 ## M1 — Application foundation
-- [ ] Validated settings and structured logging.
-- [ ] aiogram entry point and router structure.
-- [ ] PostgreSQL lifecycle, SQLAlchemy models, Alembic migrations.
+- [x] Validated settings and structured console logging.
+- [x] aiogram polling entry point and router structure.
+- [ ] PostgreSQL lifecycle, SQLAlchemy models, and Alembic migrations.
 - [ ] Disposable test database workflow.
 - [ ] Redis lifecycle and rate-limit abstraction.
-- [ ] Health checks and graceful shutdown.
-- [ ] Unit/integration tests and CI baseline.
+- [ ] Health checks and graceful shutdown hardening.
+- [x] Unit tests and initial GitHub Actions CI baseline.
 
-**Exit:** application starts with validated config, clean migrations run, tests need no production services, logs redact secrets and user content.
+**Exit:** application starts with validated config, clean migrations run, tests need no production services, logs redact secrets and user content. M1 is not complete until persistence, disposable integration tests, and the remaining exit criteria are implemented.
 
 ## M2 — Personal inbox vertical slice
 - [ ] User registration and personal deep links.

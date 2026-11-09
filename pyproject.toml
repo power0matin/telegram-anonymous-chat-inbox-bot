@@ -1,3 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "whisprlink"
+version = "0.1.0"
+description = "Open-source Telegram bot for random anonymous chat and personal anonymous inboxes."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+keywords = ["telegram", "anonymous-chat", "anonymous-inbox", "aiogram"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Framework :: AsyncIO",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Communications :: Chat",
+]
+dependencies = [
+  "aiogram>=3.31,<4",
+  "pydantic-settings>=2.16,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<10",
+  "pytest-asyncio>=1.2,<2",
+  "ruff>=0.14,<1",
+]
+
+[project.scripts]
+whisprlink = "whisprlink.app:main"
+
+[project.urls]
+Repository = "https://github.com/power0matin/telegram-anonymous-chat-inbox-bot"
+Documentation = "https://github.com/power0matin/telegram-anonymous-chat-inbox-bot#readme"
+Issues = "https://github.com/power0matin/telegram-anonymous-chat-inbox-bot/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/whisprlink"]
+
 [tool.ruff]
 line-length = 100
 target-version = "py312"

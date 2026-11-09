@@ -5,7 +5,7 @@
 <p align="center">An open-source Telegram bot combining random one-to-one chat, personal anonymous inboxes, and threaded replies.</p>
 <p align="center"><a href="README.fa.md">فارسی</a> · <a href="docs/PRODUCT_SPEC.md">Product spec</a> · <a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="CONTRIBUTING.md">Contributing</a> · <a href="SECURITY.md">Security</a></p>
 
-> **Status: Pre-alpha.** This repository currently contains specifications and project documentation. The Telegram bot runtime and deployable application have not been implemented. Features below are planned, not claims about an existing service.
+> **Status: Pre-alpha.** The repository now contains an executable Python/aiogram scaffold with validated settings, a polling entry point, a minimal /start handler, unit tests, and CI. The anonymous inbox, random-chat matching, database persistence, media delivery, and moderation workflows have not been implemented.
 
 ## What is WhisprLink?
 
@@ -43,7 +43,7 @@ A user chooses **Find a chat**, enters a waiting state, and is paired atomically
 
 ## Planned technology
 
-Python + aiogram 3, async modular monolith, PostgreSQL + SQLAlchemy 2 + Alembic, Redis, Pydantic Settings, pytest, pytest-asyncio, Ruff, and Docker Compose. PostgreSQL is the source of truth; Redis is for ephemeral coordination, caching, and rate limits.
+Python + aiogram 3, async modular monolith, PostgreSQL + SQLAlchemy 2 + Alembic, Redis, Pydantic Settings, pytest, pytest-asyncio, Ruff, and Docker Compose. PostgreSQL is intended as the source of truth; Redis is for ephemeral coordination, caching, and rate limits.
 
 ## Documentation
 
@@ -57,7 +57,7 @@ Python + aiogram 3, async modular monolith, PostgreSQL + SQLAlchemy 2 + Alembic,
 
 ## Development status
 
-Brand and product documentation are in place. Database schema, migrations, Telegram handlers, inbox, matching engine, moderation implementation, tests, CI, and Docker deployment are not implemented yet. There is no working bot to deploy. Do not commit a production Telegram token or real user data.
+The current executable slice only proves that configuration loads, the bot can start with a valid token, and the /start route responds. PostgreSQL schema/migrations, Redis integration, inbox delivery, threaded replies, random matching, moderation, media support, and production deployment are still unimplemented. There is no production-ready bot. Do not commit a real token or user data.
 
 ## Privacy
 
