@@ -1,0 +1,928 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 240102f..fe9140f 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -6,6 +6,7 @@ The project has not published an executable release yet.
+ 
+ ## Unreleased
+ - Established the WhisprLink brand and repository foundation.
++- Introduced the WhisprLink visual identity: SVG icon and logo set, social preview, and brand guidelines. Replaced the earlier placeholder mark.
+ - Added English and Persian project introductions.
+ - Added product, architecture, data model, security, roadmap, and development documentation.
+ - Added contribution, conduct, support, and vulnerability-reporting policies.
+diff --git a/README.fa.md b/README.fa.md
+index 5c30bd3..e3e07e8 100644
+--- a/README.fa.md
++++ b/README.fa.md
+@@ -1,4 +1,9 @@
+-# WhisprLink
++<h1 align="center">
++  <picture>
++    <source media="(prefers-color-scheme: dark)" srcset="assets/brand/whisprlink-logo-dark.svg">
++    <img src="assets/brand/whisprlink-logo-light.svg" alt="WhisprLink" width="340">
++  </picture>
++</h1>
+ 
+ <p align="center"><strong>گفت‌وگوی ناشناس، با اختیار خودت.</strong></p>
+ <p align="center">پروژه متن‌باز برای ترکیب چت تصادفی دونفره، صندوق پیام ناشناس شخصی و پاسخ‌های زنجیره‌ای در تلگرام.</p>
+@@ -36,6 +41,7 @@ PostgreSQL منبع اصلی وضعیت کاربران و مکالمات است.
+ - [مدل داده](docs/DATA_MODEL.md)
+ - [امنیت و حریم خصوصی](docs/SECURITY_AND_PRIVACY.md)
+ - [نقشه راه](docs/ROADMAP.md)
++- [راهنمای برند](docs/BRAND_GUIDELINES.md)
+ - [راهنمای توسعه](docs/DEVELOPMENT.md)
+ - [مشارکت](CONTRIBUTING.md)
+ 
+diff --git a/README.md b/README.md
+index fd9cb01..1746e6f 100644
+--- a/README.md
++++ b/README.md
+@@ -1,6 +1,9 @@
+-# WhisprLink
+-
+-<h1 align="center">WhisprLink</h1>
++<h1 align="center">
++  <picture>
++    <source media="(prefers-color-scheme: dark)" srcset="assets/brand/whisprlink-logo-dark.svg">
++    <img src="assets/brand/whisprlink-logo-light.svg" alt="WhisprLink" width="340">
++  </picture>
++</h1>
+ <p align="center"><strong>Anonymous conversations, on your terms.</strong></p>
+ <p align="center">An open-source Telegram bot combining random one-to-one chat, personal anonymous inboxes, and threaded replies.</p>
+ <p align="center"><a href="README.fa.md">فارسی</a> · <a href="docs/PRODUCT_SPEC.md">Product spec</a> · <a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="CONTRIBUTING.md">Contributing</a> · <a href="SECURITY.md">Security</a></p>
+@@ -52,6 +55,7 @@ Python + aiogram 3, async modular monolith, PostgreSQL + SQLAlchemy 2 + Alembic,
+ - [Data model](docs/DATA_MODEL.md)
+ - [Security and privacy](docs/SECURITY_AND_PRIVACY.md)
+ - [Roadmap](docs/ROADMAP.md)
++- [Brand guidelines](docs/BRAND_GUIDELINES.md)
+ - [Development guide](docs/DEVELOPMENT.md)
+ - [Contributing](CONTRIBUTING.md) · [Security policy](SECURITY.md) · [Support](SUPPORT.md)
+ 
+diff --git a/assets/brand/whisprlink-icon.svg b/assets/brand/whisprlink-icon.svg
+new file mode 100644
+index 0000000..a1244a7
+--- /dev/null
++++ b/assets/brand/whisprlink-icon.svg
+@@ -0,0 +1,12 @@
++<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="icon-title icon-desc">
++  <title id="icon-title">WhisprLink</title>
++  <desc id="icon-desc">Two angled strokes form a W. An orange message shape with one square corner sits between them as the link.</desc>
++  <style>
++    .ink { stroke: #18211F; }
++    @media (prefers-color-scheme: dark) { .ink { stroke: #F4F2EA; } }
++  </style>
++  <g id="symbol">
++    <path id="voices" d="M16 31 L42 97 L54.5 65 M73.5 65 L86 97 L112 31" fill="none" class="ink" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
++    <path id="message" d="M51 40a12 12 0 0 1 24 0v12H63a12 12 0 0 1-12-12z" fill="#E56B45"/>
++  </g>
++</svg>
+diff --git a/assets/brand/whisprlink-logo-dark.svg b/assets/brand/whisprlink-logo-dark.svg
+new file mode 100644
+index 0000000..4858d7b
+--- /dev/null
++++ b/assets/brand/whisprlink-logo-dark.svg
+@@ -0,0 +1,9 @@
++<svg xmlns="http://www.w3.org/2000/svg" width="434" height="96" viewBox="0 0 434 96" role="img" aria-labelledby="logo-dark-title logo-dark-desc">
++  <title id="logo-dark-title">WhisprLink</title>
++  <desc id="logo-dark-desc">WhisprLink logo: a W-shaped symbol with an orange message shape, followed by the WhisprLink wordmark. Designed for dark backgrounds.</desc>
++  <g id="symbol" transform="translate(2.0 0.0) scale(0.75)">
++    <path id="voices" d="M16 31 L42 97 L54.5 65 M73.5 65 L86 97 L112 31" fill="none" stroke="#F4F2EA" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
++    <path id="message" d="M51 40a12 12 0 0 1 24 0v12H63a12 12 0 0 1-12-12z" fill="#E56B45"/>
++  </g>
++  <text id="wordmark" x="120" y="67.6" fill="#F4F2EA" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="600" letter-spacing="-0.5">WhisprLink</text>
++</svg>
+diff --git a/assets/brand/whisprlink-logo-light.svg b/assets/brand/whisprlink-logo-light.svg
+new file mode 100644
+index 0000000..7353607
+--- /dev/null
++++ b/assets/brand/whisprlink-logo-light.svg
+@@ -0,0 +1,9 @@
++<svg xmlns="http://www.w3.org/2000/svg" width="434" height="96" viewBox="0 0 434 96" role="img" aria-labelledby="logo-light-title logo-light-desc">
++  <title id="logo-light-title">WhisprLink</title>
++  <desc id="logo-light-desc">WhisprLink logo: a W-shaped symbol with an orange message shape, followed by the WhisprLink wordmark. Designed for light backgrounds.</desc>
++  <g id="symbol" transform="translate(2.0 0.0) scale(0.75)">
++    <path id="voices" d="M16 31 L42 97 L54.5 65 M73.5 65 L86 97 L112 31" fill="none" stroke="#18211F" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
++    <path id="message" d="M51 40a12 12 0 0 1 24 0v12H63a12 12 0 0 1-12-12z" fill="#E56B45"/>
++  </g>
++  <text id="wordmark" x="120" y="67.6" fill="#18211F" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="600" letter-spacing="-0.5">WhisprLink</text>
++</svg>
+diff --git a/assets/brand/whisprlink-logo.svg b/assets/brand/whisprlink-logo.svg
+new file mode 100644
+index 0000000..a14540e
+--- /dev/null
++++ b/assets/brand/whisprlink-logo.svg
+@@ -0,0 +1,14 @@
++<svg xmlns="http://www.w3.org/2000/svg" width="434" height="96" viewBox="0 0 434 96" role="img" aria-labelledby="logo-title logo-desc">
++  <title id="logo-title">WhisprLink</title>
++  <desc id="logo-desc">WhisprLink logo: a W-shaped symbol with an orange message shape, followed by the WhisprLink wordmark.</desc>
++  <style>
++    .ink { stroke: #18211F; }
++    .word { fill: #18211F; }
++    @media (prefers-color-scheme: dark) { .ink { stroke: #F4F2EA; } .word { fill: #F4F2EA; } }
++  </style>
++  <g id="symbol" transform="translate(2.0 0.0) scale(0.75)">
++    <path id="voices" d="M16 31 L42 97 L54.5 65 M73.5 65 L86 97 L112 31" fill="none" class="ink" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
++    <path id="message" d="M51 40a12 12 0 0 1 24 0v12H63a12 12 0 0 1-12-12z" fill="#E56B45"/>
++  </g>
++  <text id="wordmark" x="120" y="67.6" class="word" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="600" letter-spacing="-0.5">WhisprLink</text>
++</svg>
+diff --git a/assets/brand/whisprlink-mark.svg b/assets/brand/whisprlink-mark.svg
+deleted file mode 100644
+index 113d538..0000000
+--- a/assets/brand/whisprlink-mark.svg
++++ /dev/null
+@@ -1,8 +0,0 @@
+-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+-  <title id="title">WhisprLink</title>
+-  <desc id="desc">A minimal linked conversation mark.</desc>
+-  <rect x="4" y="4" width="120" height="120" rx="30" fill="#171923"/>
+-  <path d="M31 39.5c0-7.46 6.04-13.5 13.5-13.5h39c7.46 0 13.5 6.04 13.5 13.5v29c0 7.46-6.04 13.5-13.5 13.5H64l-17 14V82H44.5C37.04 82 31 75.96 31 68.5z" fill="none" stroke="#F4F3FA" stroke-width="6" stroke-linejoin="round"/>
+-  <path d="M48 50h31M48 64h18" fill="none" stroke="#A99BFF" stroke-width="6" stroke-linecap="round"/>
+-  <path d="M73 78.5h10.5c7.46 0 13.5 6.04 13.5 13.5v1c0 7.46-6.04 13.5-13.5 13.5H64" fill="none" stroke="#A99BFF" stroke-width="6" stroke-linecap="round"/>
+-</svg>
+diff --git a/assets/brand/whisprlink-monochrome.svg b/assets/brand/whisprlink-monochrome.svg
+new file mode 100644
+index 0000000..13407b2
+--- /dev/null
++++ b/assets/brand/whisprlink-monochrome.svg
+@@ -0,0 +1,9 @@
++<svg xmlns="http://www.w3.org/2000/svg" width="434" height="96" viewBox="0 0 434 96" role="img" aria-labelledby="logo-mono-title logo-mono-desc" color="#18211F">
++  <title id="logo-mono-title">WhisprLink</title>
++  <desc id="logo-mono-desc">WhisprLink single-colour logo: a W-shaped symbol with a message shape, followed by the wordmark. Takes its colour from the CSS color property.</desc>
++  <g id="symbol" transform="translate(2.0 0.0) scale(0.75)">
++    <path id="voices" d="M16 31 L42 97 L54.5 65 M73.5 65 L86 97 L112 31" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
++    <path id="message" d="M51 40a12 12 0 0 1 24 0v12H63a12 12 0 0 1-12-12z" fill="currentColor"/>
++  </g>
++  <text id="wordmark" x="120" y="67.6" fill="currentColor" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="600" letter-spacing="-0.5">WhisprLink</text>
++</svg>
+diff --git a/assets/brand/whisprlink-social-preview.png b/assets/brand/whisprlink-social-preview.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..99af847ab0311f8ab1eb0e8a194b8e9d155cb9c6
+GIT binary patch
+literal 31687
+zcmeEubx@XHyY)jODcyo10s;ckAfZS}Nq2X5HwZ{~m$Y<uJft8kNOw0#H+&m^=bUfO
+z%sXe^^ZotJICDQdc*oxNwXbVkYpqStXDJbM6k-$z1cELm`cW1FK>#0Ny^&$TK_cqI
+zIRxSsF81-gyz|Wdyw_)SBhSs7)t}C<YPr(%n}e)74L!e_JTKIB`9fG~F~2P0!(aqI
+zwR9|M85UL+35f_CWsIzQncddwK&2z5xq`JNqNtBAY+I^>ru(B(4Z)bQKLPLQYz=~M
+zRO+6lagMoU<#M%QWzycn-D=b`^0VQw`TQnnC#V)%oNbQc#rEdy)(O|}iF=0ITj;&Q
+z<AXxH<u4GDA3s0@Ac&6#ZwT7s0Rlt#_W;ZE_W-Z`_ki5?_wdvk=J7}YfqOjs%P;>I
+zSNk_^@jqSdfB(S${c8U)ivRxQ{~!M2n}z%vujc>x?f?4$_Ag(}zx?vwdEoyz@xRCL
+z|Nd(K(~9_auJ-?j|8EA^znsi}`Q^X!_Wz&5^*>JhH&(>|^lTIs9#OBrz`Y4l3O(Hh
+zcaEd8%$qc1Vmo}@uas7mUf~HPrKhDNr8P0R+K7!AzoD2rDJsq}UPlpGKnYwtF<aPo
+z4AX38a*e8eJI|Y>_3*mnaTaZ~G&Qc~JJ_z)bGs2Ag3R<K<_coIz)&{SHRsS2pP0Gp
+z+G=lYrfU6-*+dsJ&E2`ryK}}>1z5Kyxl|?jhZ53@Dwbm~LyUiiCwnq6x6AI~)f45D
+zsiTS)Sx7f|XtAKvcO``O>M`Y0*iJj%RAiI6G+^K?+FkF=72V9_l@0xB7PWI}2-g$g
+zuB_VINY`StvPySqGFj-omHI(`%lG)CkpX?;ArGAq4=oK&o55MP%TSj;P11ZvM_yNq
+zs0TvCL?%V$6c7Bj^(UAQe-;xxJr$HnH*a73y(yX`x|(P8#iGYmzgBp6iWfMP7N|qZ
+zo%IakJ+*VPlM91Ov&oowp}0as8Hrg1Pujo@kv*JR>kLGS`E#3dL>o5KkAlRANlkJK
+zY<3qm5;L^?5w70p{d4(K54*`<;hY{5$+t&8X@8i$@Q6*oe=t5Qvbipfelb*LEd!4V
+zh90)I&h0AgD54cPQ4gl>*e&Jzw4Z&XMIC0#Jjv#X*;qWH=@8LBHI>4HlxGxcxXDgP
+z#+?0Z>K8^z;pnBP1-k;TBP-12q))8}E8pKVuwYvFTB7XA{G(=Rw&R%a40%BbIM^xS
+zvUqxq%PWlBBQnDigPSu<$vf;3_}Lt!N5{ukuke?sj<Pz!b3!?x*k7M%gQ%+h++?Dc
+zbufe{R52~j?bCkMeI@i*)&=$sBNS@Ruh5@JArD(=zhe4(&Ta@RsN({Cbc_sA+84j~
+zBemts3MVoScsmc6x>05iJ;%<eZagkF_?@9yH0L+1#?V8}tGa{5+ljjrF9lqKV<o8L
+z!$uuc{W@Vf*DLRrZcd(Q3*J!K@#xBZyWJkfV=xKKAT33|pfmpwGHgWw5$W`NXc6*?
+zt=MS4IfmLoU9HM1QqOM=@LZe+l@4&cvhL2kr0+Y+s6Ee8Lc9)b9<J+H^BRz9g{16Y
+ztwnL$0jLtSVOL0NWYvudvzcHE)k@OO|6=A*TcWQbd{l`hw_vfCXLOop<m?#~5T>c~
+z-gB|QGQ@mfrzSVH10|g6F(hb9o2#d|N#x`j(s^}LT@Me<?>7AO*10S&jgsR$@q}nK
+z<A0r7Z!|=gS%F{dv_J)U@&}$<6vWIY6T+f{7+z5<wN^IL>kAGsFZ@IuhouI+S~}6X
+z@mms1%hrJ&E?isjUEWUKFI_TvIcyx>M<GUdODYtV;Cff>VOGfbW+MS)<qaY2Y15Y5
+z&OtF5^t*Vl-&fj&UTN=*mgOwm_-nX$U5?dgX`C$GRlC<0J2DZJ{xr&e>h1H5zq2qo
+zVfP!Ewu--*;utbSHdN>}qRPZjGe5UxVoS&Qy0hmN%4|Xef#Ko64dqORA6E^C9Fy0x
+zmJd3D8ZJLK%|1wIrR{F>urRSotWqqS7dGa*xGg8&?$I}0##|v>w2fGURDg&M`_+5=
+zS?>Be_pvS6n9}AHo95od;>{0Jx76&i1u)pV+p@Vjvp&fr<5iKj)NZz!NQB$p^9ptM
+zTH2EfQSO2*Kq3(2pW!%l)T*7A!g=lk)_spBv$CAR^RcolnrW5uydNckRu^xzVFXOS
+zJ6PsmH5ZrP9Y~Wun8J=7rVU;mgO58P1}jB4L!Yz>1m`UJ?U(r6volWG>=_42Dwxo`
+zd|WNN#)0?0LNy)ZTQ2lDhzJExp5~StBNe>3x$tZ}k62||okTucV7#^8Cs)#ccy>dD
+zoKhH%NAL?nEb#eAyRNK5x07J2x!4$S9Y@M#gPWRTsl7YPTEF3jXT!sY4i5k1(y;;D
+zrssi^hXv)soXVuOzxa5%#;oA0$QA}3RZX*1dQk;o45cw?X1{Q<ZDbp?+26cPj>^mC
+z!J9&iBXLLq*nvnXs+y_;1q@?{8NAH{rfO8|+jF=46@Is`85uB6+qivL2RlojLqv?l
+z#!yhv6lD5qXE*09tN7|BOpIUM_2FUQ91fwP9;16sPcCv|Z;?go)=kKlaM%_Uma0P^
+zMzCI~<-HaR+~vJ^xt1@_zsJ>ko<BO*5JyM)oSHsNTFPb)_7`DBV&&368$rgR0HoIZ
+znhK7D%bTHIVXR7`1k>mFh>zFnQi)_27K?MWX>-GgH|)wx8e{K%dJbzS%9@|%rOM=q
+ze#B+H6Gepd_w_q`cG3e8tHyrUhc@7@4HaQziAHWKFccg6L5+6Cm3S%2RvgzPp}x_-
+zq!uPEkv9y}CjA!M=68iNuXkc%g=zlh{k-bZ=Pyn9)Vz2=oX#FX6HY|S8Y_Kc(jck6
+zXd5k7n<@C-oylTWrV#d1JoRjXF{8s2&SEkq_umYo$PjF2@fdGhoo@@DP~7xt=3gk3
+z`N|#MeUOEBz|f!?ye>j++h}6qHe559R&kVbMYS+>&Q2agS@_YTK|+q7zIP)p6HA0o
+z{c(=S%hc=^j7dmFof5yrc*@*VQbEY|AQmjX*gtp?p=vre$ED5uEArUQ@uO?{)R6q}
+z?IJrw)Pkh9=$vyL%x1*p?dfX>7rH3+!RMG5B-8o49!3S;{$Fm583?!FpJgN_Z@{2?
+zGij9XFqNL}!E1umOaeW>`B^jgcrbg`oFVtK4{6`up14E|5{~DWjU1X#8pQWi_)6M+
+zooM#*H{nBbj>!#AIK0>3z@EC%<P!|fmmgQpHQKelnWRthV2pi+=-P|pc!45jqU@yC
+z)5ou06(e6eZ#g|KP52-IVfShOZPaJHhP==f3o-v=C$|y0L;kL=sfJhd+QHKD+YLd`
+zTMvg)8#lXeHYlL_8foy(Lm@A&uSjb5YID_Si$Nkw{OFf)ra0Aldpr3+F(^$%M_#JP
+zH~6GYtaGV&vROS)GR*XqKs}B(m|=hh{Oky2wPDNo;0X8?*qH1mt+$e<8|F*)@rJp?
+zprZ7Xy~@Aj;@|{3ua`$q54wjAV*dUD@}ero1WpjYg-fbPW&|YMsv|S8)aP{@@4heG
+z@NB!kRynsOBP8B<HSv{k6uy11X&#(R4`&vGi@zqqvi+_y6IYkmnw6sq@g~y9a8q_K
+zG})<1P18&+w${9fmu@#xKKMd3?B;j;<P5G*MZr#=I#LfcMD7$5T}i35ZYf~e+|<Ry
+zCK>n8<=zaMfg6_rhjhvK?xALp|Gr-<cT-G%{aEQv(Efq=1E#exV&J_n7ctk0*Rzaa
+z$z_Ddjd{yagyPgMTzoKzj^cI(w(W)eCF9C(lX^bLIz6E5R#}+1VaFxls@Qen&xOn}
+zJ@uBv$uMcddN`?!Ug30qBew$s5rv80r+iIE`zcUX8E+bz@OvKWd)MklSLwxwE}dcC
+z)G|;AQ=fl`Hpu~7ZnDCJ&RO}S?Za|%uU}pJleXlI<tS`W)wJ6>*lY`nWT80q&MJsn
+zFI`lwo;rk;L$G0{-iar(vzQr2TXa$V$}Y}*cC|@N@*r`+2!RynEbJS;U;0?F=w)?O
+zi6lz};n#*fEL5Ym;cMPIE$nYx3q#mr+GR$VlY4mhnByXcsQ?y>bfxD(;pXYr)KpFF
+zV93yI$=jZIq7HsYGuX^|1<6PCd&0Eh(%k;A>^n==tS{6B!#Q~*DR`B^j0b__piK4>
+z=9Xi>c%ZvDafnVZz#IaLC|Uk92WmeB5o+7A1RRD_!?#Er@6Gv;+UW)gab_WQbk12z
+zj$=}@_7=iGW;}KU20B{RhK{JZj%BtiHP-vft~LLPki24VRXK&Iv(JWqCehID=3=eV
+z5_WqXIJ+)nZ_yPqTDkL0W={9!2KMI08@S|JwdFeFBg?k;_=xni+yN8^@Y#iqlul`m
+zP2AnHy=6(0G$RrGL*rs<|JLDq+woaC9Ckk(yp7^Do^`5j%~@LZvvsn;pY{5sQLA?D
+zwy)QOXxDU}-b${xeEOkUV&~Tmi~jRC%zNt$6P@I$;w!%l3Y`Ly-G<jXU#nDfrR^16
+zqt}zR3R|7itf*B!UpyYc@N+DdNIx%E09)!a%&a%8i+lKuX7}Ba>yS*~E7HI^mkd)&
+zh_AlST;@OIBO1)=8jsr*<a<k)ks7=)$-y{zv~ohyCmt*~L5MTVx7PYp>yOc9Kz0MF
+zmFXO@3S_8u)@$lBfqqq0)gDNW6*c1G$!7L@!%fmcE-AA0uNFn+Pp)Gl10@~fH5A76
+zn|~8>@$ocC2Vk^iV)zMIVIMR7;ii)0Let&Ub~BSy@Q+f$Ktqr5jN(H?WFYniz=@H8
+zdp^bY%v@>8lLKLgf4AVmQ^$Yb$tdBTi%g1$E&*C;Yrtcsi(D;Jp@z=6Hh3^F-Vmu!
+zuY1(s)Osl&n*2Mj5NTGeXMu#3Z@I@%PHU#x2B2L4`_1D+Ilxc>fZzmxLVq_Wgb{pL
+z9GUfyi5EuYVdpR>a<dw_G@N}*;@wkje&8~z&DKICc7n=*=%E?WQDle!Y^a{ZvZj0X
+zQ0F~XZbE_Ua$DMBP!uDhEe^^(k{IK<U=oj&;6VZlde6Exu<TOjwy~pr%dhnHSB`J9
+zde6vg3*w=q$6-SXaou_PPVH}BAAoXN<>muDtA}G@pRCMZuN;$E6mp+BW<+`FK|kIX
+zIQ-c5T-SEnU5HOpkCI5RsJlqt3EyLi%-8SgZ|MF2Cb6Av03`R-S`AV-QI0o7h}vAg
+zX}YHlZ(eA<7Q@3|le-Uwq=tj$il~4P>%e|4630de$-GyDC(o<2nK9I`+$Pd~(yfxG
+zPdw=B2!6w|rRfxQ2;VG-S7k4eltSSQHFI_ctNtMXo+>Oi0cfFgGxp_7m0W4A?WI+b
+zQ_%V2otl(pXKDGh+aII69>DhGjf#!hTz%T&TcpEHaVpyWXOYPpnYVZ_oVB5juz@kY
+zA6lK4rB2aX2%`%!%>D>cwu*;qJC`rc8TgYNfZJd>We{J5>k8BujFs`(o~G@DYw#o_
+z;P;edaFtBSk9W!0Ztb^z$%uX|7u!l>@0!$RMWLdLXy)Us**kq_wQI$z-m$lF#kHo8
+zyqg3FX&}U$20eg{nCldNiKohIFb&bXyl0Ay+wfXwO<<N!&a!45{Q|U7Pi~V~`F=9>
+zNe6X1m-7zJ4i3Hs3x;_IskUGTK(+>y?hl6rmN?R4LNeHHpMpiq5y#4^O4B=(M2&dy
+zOW73U;!M-pFmqRomjg$&k*nh{yVK?A2}B^Z_<nk59Vl7PsaK?WUO`AwA*7ZD+mXq{
+zb;%1nu?f3VW2uS8@|voobyy7=BHR*~MHN$*pchph_*GJ%YBjyhA;!=x_0zm*-r35r
+z^IRiGE2qJwj>j?gO?IqnZu#EDe2Qz}=TDvm`dqjmG-<qqAmI&ElBh`^;;i#liIcw4
+zQEm<F6{}>J$th5(bevvCPCL4V29!_8D|A6A;w2R@YioWSu9|~E@<_OMPFc8v)U!>M
+zELTHgtZOj4&#a1+n^*Yap3U66&=o-E_S2@On)y>CcY(LW<vUON<Qe?^*K|RNgA4U~
+z1?dU=B{TBl&Gd7vyy014*VhBrb39rTYfYVr_+qA}p%<<J03;KVb2ct%?rrnT*0(eq
+zyA7o(AaE6-D3&oeOt3XC*mPZvT>w6#%6A<sQ0A6z<mP5<Hc$7!^KIQrHdehFq7v*#
+z9=Uhzi2~t93i19xOHaXt`9bpJk05>psPH<7OJbBBiT-BCVW$j)84&tar$1i0mv%Tf
+z-gk(H2p20L-8Z}0w6|~`I&PL&e=k(6f5ku7H~}&QPm|OS3!1Nz3jM($Xu^wkWFqc8
+z!;B^~mvKLj=wkBShC%m!&U(mt9CxudWBI88D!`?qZ9K*1Dr25<nM`L#2Ikgb{kr`8
+zt1^MnLuO}QwPUY*w#hSQ6$&eVK?Rn2S)wQluU;z!Ov#ga;hyM&SXRDF4{hU1)|fnq
+z2jVm0TEn3B%9R%>g|c}VK_9N@V3}~c_e|PA@VK6#hf7NYpta?>AMAg`TAj98#gR*!
+zr*6h>y7jUsocUePR-Cc6Q+Sr9LA_%45|9rh+xKJ{iKcV4bZZe8r{i3k8`q$vA~@zw
+zNi!Jkcj(fcJUva@-{W4cDX5ccd^^qW{ASj2aketMIHz}sWP+RH^fWz4;~tP9jZEAd
+z#79;4Zng92ac3hP9WN4!mtffD<SHG<ek7!lgz@WsouxHt#-9iMU%#2fp2yO`$x134
+zT=`&Ld;)&H1jpox)%{uKP5qJ7tGwaOw<on>)D1G)$o4Pm<`H47x4xL@!<J7rYr#2`
+zD+ZD}nSxNgdzm-sbzTW#t)YQW)axudZ=c`3{@6`wRj{h#H5~pv+b;nOb!$dqF{muK
+zrEs2|yi&4y!>6%#LyZA<ffz`Ozg_B@bY@E@dBO?3HfJPB^nP8kRM`zRB7%t+gMmG7
+zp5^s4i0*r;<I=J!+ACLCwfm*2bip)#O+1C2SON<EZ;n>mB$zl#Dk<z2aVP@yUMFf8
+zwQIW5omPg9;VGoB*6JEe@o0iWRp?i+i+sw0ohjM(>Z@G*x^atk#O~jCJRF8D(VglA
+zS+g^V6PISDJ>JgwsNG<aJvlaD8)V^QuF>A1k}ihVYbGAqUSI*44866!aiuA*?iS2r
+zx1CfUL6Vu1SyQ`AJLsW<(+jJI9&>I*{`6;?`lM;_LJ`l|mXtulZDy&gSxUJq9zw~h
+zay3=8_e2~brGjYmW1|GwX6Vb_htoR>N`vo$jtzuq5Yj5|3V`8@v6{g}RaL_rXSzys
+zbE0@|BK?~@7))k7H3*7Cn?Yoe)NueDepXULl{Guo#faVhiRsR7le<Zp*d=!`FS%({
+z7TnqOkHjPxS20$Ac=ANKM*^PI&*M>DzuYr`R)+@B2VTO%+JuFw)Z!|Z*y)+F9<P;o
+z4o1a)q<32~N$!cYWrElKqI12I8buxy$u-snza-}6#fi5*OPmBDZHmGJA&w=n0WLsP
+z0&V&6LHrdxgODxDGBMG~r)Ci6>XdpFQ<R_~h~nMe+T*TRVrT8Fo%@rz9Qh_xleMT2
+z|1@78e$2k7OybpT>_EQ*p?aVA*t@V<rzlS!ZGPos{M`a+ES%hO*>6$v&?}|zYJHvN
+z36t9f;hsw&N(l8@JhQzaayrY2E!lH%ng-!F!he2&icJB<L8ONCSl-$hIeo#iiMA=J
+zio*&^#bRO5i*;_1eQz}R^XtQvr(TRt{{U(mc-=DEwO@ye(_25rFZT93oTl%w%YKzY
+zJC1M=<EKD)d7guTFJxXAXNE<@QFqGEH4yFJu9}}(2*1R-Lfm4!=1TU`G++-83pMgm
+zyj$-%KX-4UpkLI$DMI8I&>ejhQKVkgj!+)(W;<gFf34Rf`~%GqHsvjHZT=zs*)xf{
+zCC$+KW>Z*cv6RAR#<NC$CiJ~}utpiR;d9G%EgZKqcpt8zT%*yxas66H*}@PhG(Xxm
+zqJ8K@-hLlPBIm1qxm!wDS!8c3v%h^%VP-m;=~{bw%m#SkjUjI~9*9=xF&P@4AFILB
+zy|$-CEj=r-si9{?7S~UWQwjmbVOLJncQSM9qyGlm<r62a1L_IwNCyt|8a*)SOa@>R
+zG=9(kQC?B^rfJpFK>{6yiPr|h=0bmf$&GcI6`oNKn`C|NxA=&G+RqhH@6A(W-?tyq
+z+$q0{``TIfdz;uhAKO`2BoFX7?KjcZA#O0`$J#}NB}D{AF%JS{#V@t5U1Q=KUEp9i
+zgUO%3wHW#Mevf+6_MST_I|<P|$MMKNF|PfqZQp%$T!0~wGzOajp57t)Gjl688+P*!
+za$#h|4ES~KR-$zz$>C^Ey%*cUapd5aoLQdQ#+<$@ngYpcqpbakbLE%CFZ_O3x^fOg
+zQ$W<tw6h-p&y!=n!MyAJYt(6Ul4j%+P(&gPzTXX<u{Fb57rQ!C<8qsHYA|Qz6=vNG
+za+G@5<{rvBfu^D|I;+bOH3g4$6CHkOkDf;f?IZ1O<^aG(h?}@*Xy{ey_)n8O0n{6t
+z92ZBvDD&cRJi!l4iUUlqa_y~x7q;RTDoDN}gq;(8N^3)%$n>Le??QJZ(YVzQ_P5w<
+zd3us^Cb+xNd1>L_QM5p>Ah$Ykz_Cc^W@WuoCej%0$jW9;t6s%DWcDsmVY_Q-HTt)5
+zJ8V!3CA0G(4-1b-yER4fEQuci#%hF=cFu`T?PG++(j&L!t&>ywY2O*n_bNid`5+`I
+zkbwdNdFjI>8oeClnalzkvqde^j7HYC=OOL9gFJnoRw|Y<RRoREYTG^);l~J|q$he9
+z5j{uz=!C6e9~B2MC@zh^gXMk3cLWQSX~!m7aiyH`ATfv(qi|)G)nhv%7><m7<=rCy
+zIghCbljsg@eQSNKJX$?pVxfcn1;b`~uo7BrqIZ#EC80sQ%`>i{(ZJ_O!mlT5^-c^<
+zvC3%j{P%Z!)R&(gzBvS{<O$OjXWZ}e+a}t0=Z=Egyn+NGXFYG~Ff`o!5D*Nwo9A{3
+zN}2L0g~Un0KbL~b0TF69F`km>!_RMva*TOry!cxy0?b{IP#{w~UO}IsTm;$vH!^Qy
+zPYN1;yjjSt(}SOsHb!|lc!hSG!jM|f8h;M$<M<ko3NbIooWLtoteW&TqSX6LFc%`G
+zgg1dgRKLQtDPi7+3;Gi9k}~Vu`o%*`OxwOStBc63D$c-sO$2Kyw+%DveD*<zx*Xx}
+ziqa#R8ll<3dv9x^e^@|B6T2Q)9VP)WytUH@OKo!_0MI5CTPTXSR6P9)4%K?nCm6}Z
+zOy3K1LJT%-V8pE5^p<6n*(y@WaXEUtu8JCRAAUv|(ylA2mdZwe?q*3JtxfYit2_d|
+zUZ8Vt!aDcCwK^r$w*qgx3M$FnJ#Lw!)T;bL^HAMCpo)TZlv@Dfhf!N2>q+`G(ZDSg
+zyEXiq3dZoQ69&s}Z|!V<F|ju-K&-X+lcHO1<UAll{b7zUFHIKqG4AarcB?|=+g6Tb
+zV>jjxKt=a5v-o*1agLfzASvAe7OJ6vb|L)pvqQtmy>~3IFW9x0gL%dk3Pzs1J1Wx3
+zxN3T6kNWZ6;L{ughO^X%dW|qMu5oRfjdW(x|1*o*AvgJlFy(kkNSJ&ZaYmx9Ym3S?
+z(lDF(>|?zH2m;I!C_aY%%YcrSLv%DW;QbgW9Q~GWy|uaeGB@@+5$ek|j7?t!YT;aA
+zT6!Uwg~WR|#1D3#{euw+Xh#GgwW*Pv0YIt=_(FdpDATH@%oyL94(_FUYbSvbK^Ft6
+zS8B>Gw5B!(0AN6I0rD@qII+ek;Yp0oAWA8n5+_<M91@&F#geAIrKNMr>eu$khjLHx
+zXZ@eyuqyUww)W`V`hEw@ajoaQu<wWiXiw#}|5zjhEr~=BQ#HQDqMc60B-w~NbzDU-
+z0EI{@5n_%2>OC0aBaB+%G8!s`HPYzZB@=l;NDFw5ulIqA+SXySHxOat<b0c(QYuNF
+zdAA=+U$9anc}Hp^^59-95ff$ODi$|*-OZLf9KJ&$35?MKv>%{jc)mi+yE6hK%c2^b
+z3`T<LmxV__2eObrv#aedK?~Zyh&Mw&$|TYccqxTH9a>s&@ZG5~D~|C<!A!Ny9TS#d
+z`LjwuhZ<e4V#{r2-}qrh0M!8W38UTu@L=g6Rf#{`8f7f3X^Z0m5+Dn7b>=e9<-XhI
+z!?Dj=VzxFb!+Vss%f*mh0y2mTCh;_71a)o+pd;7SZ0`PGD9$=HeyIwXhtC{9CX{p=
+zSl&9W*Laf)0sBp8_a~~Gi1=fOFSOTXmDh8HXvc;&Hy(n}QfU<5cp0qYL_$&zKAg`_
+zle>yCe|DttePLDlS*YqGB1X$OAjV*&F4CvxXDrv^@&@FC_%I38nXMKIDYqg&0+e()
+z^ppttc6!WdVu`2xHTF{&x`Ynbqbu}+-@o;jz94A#X<>O|!F1BHPL+=X1`A%K!N;VH
+zE)>^0v#n9+6f+&wjNTr$?DCPUV#oFFEVRJ5%th=i1$cs;v#ZTet|{DcBwFB-gA2b!
+zuy?33rIOw^_wApPgnJUUij{(Lii}4t;$uhe-ZV%Te?G}$U9=+(i-W-W5bhOD@3vZ+
+zp#!+69I*1mfpD2wcaz1Px-w3pr5s5<SR%Ne7bg6JKTvH39eMI#g55912Z#uOxER$H
+zaCTbu+mz6nSfHnsLlIBbxZVs)xTiCtv_UpW4t%_65h|AeO}`}pTqb3I1=eQnqnOZ7
+z#(d8O3(ynj(E%fKE#)A6ch(E2mU*kzU%%^XnyWb(CuQUmu#R|os@4p<=w46D*Gx=J
+zu@KBdzgB?k3jirvYkh%_LX`I(mU0ERETAgqFZ@OX^{?q@)Qk57q*pk`3G+f#i*X1b
+zCqeoBG7t%d>$~V6bel+hc{v&vZWW*o_p>rPrMLjB;u&hCfQ18|(`*kwi-FO3@O;Q7
+z(jc|1Ft*dX1=&kDIyI#ZG*RnYAKX(9c=g<qS1KsUBoGlhM#tQKRL&~O)$mcx-iB>M
+z%g8hG={PMgpV4L5!)p_wx3xF*gR&9N%1{}R-pWm&Zyr6Ew-KQFJpduHqf%SD-Wil#
+z{q|99XLg(PKj|A}%jZguu;Nmhu+6XD#HD0#X)9=t{w956znV~cu6dTM?izRbQ-!Ru
+zE5J@?Kg1u-{tS2-DOxv@y#rZFLh2=i+GmMY9{$(VdeYJn&*j>^ai!DDff?n+G=Fh~
+ze$M)1OGEoZ`{4T-fDtuPf>0QC1#~*5jDyuHsug{)F;&%BFuS17Pj*2OAO?-S_rPyD
+z|Mm5JubYTnk%#jxMz5O76t8to)+hiJ(V6bKezc0>BzCiL;~#zWr8yb6?9%TNcUC)3
+zDvblOO~BkFd&-PkWs{9a)e*+I>Sh4%V8E;OWKAU(KqehWuRLl|Iob*;Vlr}_imL^h
+zWADUxy{Q4p$qQhp;QsO|pU_3evq&>(Z;#K!x@>>C#^bi{WyBPW-(v!^Sja3S!k?>6
+z?mH{+5E}QqfrdXED?L`L;JrmU&3KvSJs1p8ISi7J1IxiNe&=wqj}WQ&&#ZVZkXCF9
+zNcgL|s>6=)X@}9?*4pXcfPe#S&HZt{k)P6sH*~bFKO256vFsfM6)68!cthVy?%HGp
+zJPQ85m~B2X)LZFKvnVJqsK;n&%HkgQjgEO3MY~$RcZ}zC#Pb7eC$_hqon<-=BQ1)`
+zm2_%)Pq?GJ=df5dj4;cek@EKC4>pR5>iTly_Jl)@0ND%;KE&MJyM-heta+{9vtceI
+z90~of7505xMTxlHWglC^Wnz^qm}xjFSH$N0MYI?854L&C{_qK))uw7$HwiPosh_`Q
+z6Gxp~D^p*lQID}I|Moj=&;G@A+0!lWpZyMrvXoBkEmPADzJdrxll3K6b6RIa+xb9;
+zV`Z~k7eGKGCge66gqT+q07$<*X0maAX61EV_i#A|y%Q0VQJnIe)VZm=Yi0aT5&ytr
+zi|=4x5J>(&<axv!srs45hK@s`!+z2b_UFFDM6tWOuz0SNV1BdmY+H`nwSidswO@DM
+zL1mA}tdAumexg=z|3+8IrqSl+4F>kh9oc5+YA-<dl#GCVe9OoD(@vo6D_HSS^P64m
+zK=v0MmdOSs;9b+{aBvn4^cFABSQ#mljl&!?;SF3iZEa6jgxE7Cav-VY5mM5i4SjkM
+z%E7{8q-zy-6#RbK6?FIXh$e7|XPD_Mn(uQ$6rv!VuGd4VcAW#ntzYc5*R#7T^9f-H
+zUu}xXag)Dr!-2JqwP*z`a{BgULqmHPmlQD8=-H$J4T*1Xi|pmhy`TtMX|R4(0b)}K
+zOug_A-!hjdftsPPJ&KoSnH?)p03=C%T)xMtLVP~lG>>?Ao`Z1lV%}Z`sAm^|wbGY>
+zI(_KSvFrE7L_@D@p7`P8^96JftE+ziypv4IgyeK48BEV4W#QuAAh&}wSX|$mJi9?m
+zre`7xYb|@v^o4|4V$aXPKPh+no~;`&2LP`m@?k-lT$%B=m5k?V#kCUXh|8QvpWk(G
+z1Mb(sF@yDTr5FDIarAS90)aC@Zu!)EWME_9EbhxrRR^J#@mf+MbJ>fP4wCZwSm_mA
+zy4?@m@ncYxR?jyAEShvLK3a>7rKXT%&0Qi~WL1^=L=BfG50&B|GTO7JxPG%BpBE7j
+z&BBdms~fD03u}9iJvy*Q3di!K?dQ%1PC-A`LA{lVX9p1TJfcM7g?&qx5@39hs(MC8
+zUr*pvS4+UFKomG%onyjKR>Nj#75<G}ZR{P$_uw&PMF=LUZ)({6kZP6jg7D!!R07W3
+zyeW<B3xx>sdYJ%(eGw2etF#?+?|a3Q4R15|z>UYybSo~>Qg%Z!3Ljs-K4vdK)PN-b
+z)0CC}dbK&r&rH8~tDtX^Co~>I)ta$&!6pa%2*yJyUS8}{H|yN~2nzx}!wP#c(l=Su
+z3~Y*MkH_In%rW(8bx;3?Z>sA<?R@Lo$qHM4%13T*yo0UCLyLulr!L0@<bLoEAfDvP
+z%h?*~(l72|Ri)2GGc17Pz*^FCIoVx7!NN2^`Ao*%GNq{i;;nDLC2|7_nwoVdFy@Ru
+z7}4?|drID&ePsheqaf=L$h8pWw}*}(oPJ)4KBglu>Wx!a$n6d};0z%kjRDG-6EpLJ
+z?DvAga`UUAd&1vQ@1LUiJeqe1!IK0uUFy!sE4e3-eR;{v1jrd&+2@b8sJ2o1CVg?8
+z_k6kKOH{L#jP$*m^00qRMNwPi)d$}sKj}OV!gxZL@#(MmOF#zKKx_=LnA;{wW<)ez
+zP*>YHF_-nPw@nl_zGP0Xs({`EG3Z$7&j&nXV3zqJ8QalU$*<o%AlI<aSHuMPQ{a06
+z2AC;%w*LFijuZQ0{U@lFG8zMH+>Sb@{3<%#?f)f_1!rAa?nLJe4h(4!HgN(nt+GTz
+zQ&xWvJ^NN6s~m$V(lkr!(F{Wg$aHo#bD%rm@hceAQ0)T3W>~(Mk&!l<`EC6bLY>*^
+z3efkC9)5y!&PewL#YxV~(Q?XE45)(SK=?@x+yXdQ*)|%2_GktcC03Lo0O1G7U}b$h
+z6aag6>OQJ}b-wM>-#m&rx>}aXl4SEWV*S%isttztQFmd#mC5y2@~mN0qX-~?0h$6e
+z<rjUYoO0x%Qz1_uN6>KoSB`D&8J(!^@APW-I~`j>ql|wiS?oupf;+IgJz?~($#>}i
+zc*xKqpf|o|2)$zJH;6$TI7b(gBk;9bveV1jJCGpIF_t&F{=Pa$W`ppLkMplk3k%dU
+zzDEF^qWyd#LAU&N56DFtB0T1WrYm`lWcyRIm1C!p9wuWyK<$5JX^Kq-X=kV>C{fP|
+z`|H()*Pm`J2BgCmw62;0)5C%T5K4qCUO>|Zp8<9}wTesF-Qpc5Ybrekzgm!+fAX^p
+zj5A4Lmw)U|{I5T(l9;giVBX!uq?s~OQUM5U#-F&+pQ&S3?}xlqo{>Kjm~G`W-vJ8P
+z(Qw<i!Y-G=Uz4Nv&ti3y-R@0}t}7fjX@^<!BV;!K5rGZwSF<3PM&*31=REz-*7Jn1
+zL7Ry1*IcOEZZHl3N^ykAx;`Ul5`Iw2q5z==D0Y-Lb&tB;^jq*_MWP|;+A7U|o?|D?
+z?<_U;Zep&sUg1MwLE%@Kpp7MR;&%Pj-g|{u(=?Km^UQb#uUwO7kEk4&+9Gd>rV8&=
+zfh4fX1T&sj=;ml4-Aiz*<Do%%A4Ge;H}fpRL*_5gEW>jLj!anzql=%BWh%<bIhhd1
+ztDS9LoQHd9KhwW<IGnMF@AK8nd~#kM21e5WL_0dBF<o8*2U8I7Gf;YK061Ix{ne>1
+zP8z2a?}?N2#w7F;9SALoPaa-2&DMjasFqW=zD<|XMY@T*e=U4LC~d)6^b985UaB=Y
+zCI!_6SR^;y-$1sAke1-$n6%3j<qQybT;A|-iew8!yRynp_U>EA%q&a+u&1pph^nx?
+zDuVgJkMno1Z$|+?yMGcyeq&)hPEJRUfjhPV1m+^3uc%Y~v$!*Xz{XcvxspW~rv)ZZ
+z)I6gwGR*+90ai}4v=gNzn>~d%+jb-t`cLjSVqwz%#rGyfl7W#Syc_6uxGHNrib{$f
+zuYBu+WU{-B2~z%I95BY5WKik>*ACtdfgaN_=;#=$Bp`3-?xkWGzb@v*;{wi5tRh5`
+znT3br(9zE0uic(v97q>68v(#z_5lMML#ZZCaqbCM^R(=Eri4|a^4?-BKkeV=7LW%V
+zaXf>+!Y*sWeL0@#r)>mUN3t>QDMe%MF{e@$*1=U`qSd~?(I|id?2wb+g{&?H!3mnG
+z=F@mi#f&`tmMgIue{EkXCn=4>J-Uqt%>T?uPC8%6#0_&DZajk09Ibi`dAk->a1gpO
+zIMrWu?xzFyKOS+M96?(8ltR_~TZQP?bj&4!3w`Tlpe$FE{k52i8YsT;H~4f1n1-`G
+zgAi8A$FlaAwqK|;>`3pw!YQOusp^*zuWiW7W6gG$;5eTqi-rDUIz^{9nQ0p-XRBkl
+zzU~BJKSA%sM&`VBb=j4Jz`+TYj)#kB(fCUIqbm4#$;PcZ(|?M^_iHo;<@?tzLeq(W
+zN&&HNFfI4bPKZSF+rBklH;~WpB{MP~orlEUMzE7=$rYxwc{G!GmF5?RzHT-Ek59t<
+zU6G^y1_a);^t}=FxbZ=#v`ML+Mw`B9^%|qBX7L;0h8Bh9O;0GlkL@oZ{Y`nyzxa*k
+zpMS$j=&0Na<|+LZBGXDC^TJYAZYL>sxn274IUxfHK-w&BUK#TLRY9W_NrP2aXwbtC
+z;L@X>4fdCKSL=a(9V@iC#6h*XUuNvxSf=5XlvdgpYXn;zzi&Y9E#BW(RE`gt?%;3t
+z)+#nKvea+-5v!1iYn!{WZvHF!7<U6oqqE9C>8LdHSL9!W1~G;}tta#P{x3I$=xr~*
+zJ2&#XoNDEDHYD;bBE35L_r}+uQri7PoIqd$W}&cV+lBpFLxwHu6pmst0;AHXkkm8y
+zrQh;@3xL{fS%D25I;_CVY^5D&fBtbU3Rg8hhvay>)ZO?h>|&B&YA9;jP#1sF14Iym
+zo0-LJL4^UiusUIj@gE&{<hGyrdA1%p?^`dmN)%96;6w+?E|bSs_<=Z|tFY@2D=??*
+zh->c{Kd((o-(Ok}6vxTl#G^?d1{ABI^ea;W0o}-Gn(Oy_NI1ux{+)6BAH>K|z&H!t
+z4nOR7r?rLyHR-huMFl9N!FqA+pF}Bu*Qye{A@hW6Gkf}CJg0cpL4)zLNHlg^`0@S~
+zJz%7n=tO?%9TQaSOA#2Qd@c|F)C+K0uc4dfa|?TOa{^`%@94GMa^Tx6QM-SA8!aAR
+zGOC{={u9Lh);-{-->NvbfcbXLQc;xclHiAo0z@+@>MXquL*cK|fUD?Y@>RfK+7mok
+zLuCKM^__pEIc;&Iqy<o#75RF>K!Sl)BPJinxy`c-J=||mfWf(q@sVR;HfAQEbK=7I
+zIJ3?fSxt5v3;hra0My5C8$&VFSRP0LL*v{WUyF<$mKrD?$^r3t83EY77oti^o^{re
+zty|pb>A*kl_^a2x9aKLMIRLL+g#az)GJ`q~_KXeKDhM{p6mbpQZ9g@8fleO$7vQeX
+zq5(E3K4vbaQ@b*+HxJ_-D`88EMa|XDxvMF`Spx%ivP13wob|fW$jQX|WM%*?2T1M9
+z%ECg^<OzP(J%{y@Qgto422BM8AsPHR%gHSv%7hKz8)3oQ?Iyso;N)W_TDuspqrKf<
+zY^t3*#EIPLJ1kXSeoA0mk>za#7a;zi5zlI2==i2r*!7Od>v4AgkKWUGR!LG!pVAIp
+zt*wjVIi3}S73V+Ko9qgBJq=kjAlUreRczc}2WPpw%fBn(P*#+cuYaX=P;(UY6IG7@
+zj<+pdjZQ7Q(YEEb5-6u~=i$zU3iXCHx4+Qs>3?>1UNlc+(6)w=ZW(DV;*M3>@$+zy
+zuBo&hwyS6~Xj<0R<9=y|4uG}vsWlsVOkY3$i@dEpMTs=4(nTX%@4?0PbuS0ou4%!=
+zXkM79a6lH#`*4mj=?gckKW+%&$CWr+Y@QKb)4VHgw>P{_T|6NV$oJ!2%ms^bo@Izw
+z=INK}F5JMxr=;Z0F>9%$;LyH*aJ8+nXr%!J{r>w%=aF~T2b<5G>h9H_CX7(1g@3dO
+z)2ud(9vG@5z+Xe+9w?q$pCUI&(0f>VBw;3QWdSq+s1LqTRrVf5rjhz&S1T8<gAI6w
+zG)o0#V*3ucx;1_;suL@WqY23bXB46w+tKZ=uNA+hq3=E99$n_i$np9!2RLeqizom^
+z?i|^M8SAyYR=+PMT>y@$dr$<Rg!Ba#;K;gp!`51zV=*)O4N41?Nwk)E>U+1dnNbRk
+z9z7@_E<yH>{Xtu}>-&{@nlHP>W+SX67y5OR2@YYQphLnZU%ROb&H@U=to-EDEjxgB
+z-5mG-G*PtQ`np}TIzsvNuJe%XEyk@H4pV?6QQ%;C%7e9Kf0zWs@Q?T&e(nhZO>ArD
+z_Ks;!m)kFTvJd6!vS<L4G&FbyssVU(53O3Dywf#kxLeVHnOua9KJsJ$4&ezA5fXz2
+zZg4jn7)P$}wuu49S>H14<kVk+Ct?K<<2wzRb>Qd_R@E~R+a)K)sCG&wu7!V%!Rp~~
+zu)aTd9i#f}nP+Q9SFD{~%cAgk(-;7W{U=HkuAuDfT9F>5j5JHpK@XpPr}76Xk>;_I
+zo}G!9+g(_8JGp~U9^mb?)ruActHDGA(0*rWdaBf49xhRqkG2x3Y|V(zt6*|~$2np^
+zJz{p+^U${R2W&KXAO0Y)8LrhjSqHWj@HW-n@bbd#)81`p5R#p6Q=FwxJAUURyG^$_
+zF2vpn#$AIYnPv|77*!{sh_lv5acCE9oYL9&T6ORr2o`OY!ZvsURD#qcG2njI0fy^t
+z%;r3oHL^nbJfm_~H_+sP`CQc66@cD3VVhWe^O*n?2mrN}5pN>Fp><nH1~)}=pLe>1
+z+%7AFTo&hYI=}cM`F9kr+W9vpC9Saf0DA+0=Wfw7Swt&=pK<b+Lp9}RIiMV4RFi4}
+zv-;!p%ZR8dDvRc90Coaz?$`?0-IzyOQ9YU9AKt(?B^3hkW!x&_kilWG;9yB^%+LG;
+za4coRaS`nOetggbgwd8~{=ftT999#Hf?G~bI`8kN7!my<Tz4984i=sK;P%N<B+)_R
+zFnKf~9fD1rwmo)ZR``0&juqOFd!g^7Ino_tUP!#f25?6UjIQ+LFAR@sP!C5rq7I)$
+zEPw?CdJtH$ED%td(ySdVss|R+ChmIrzY;1}w5dqemiHYXo9o;^JedjC@i>Wle4jo1
+zB9D1IXMQDw7w`5X@~J@2MM)RYrb9db)B@PIK*PuozgeKvy_CRiaeA{SY~C;##JD)!
+z8&5ezKP#@N(Xeos8Qnp5pzLDt8hRnbu253Dqi_D`k}QxAR`)<~;X<!3zT^>Jcr<<q
+z$pDTXpI;%as*u7+;r;5l;gz12oWe2*9Pl}Pv&aZd27U~sG6uYdTEJCsU0Z_6O(7Qr
+zj6t9y1V$@h`490@yOocl*SDxD0IU0;Rjc_<3G|(q7lty|Iv(@97ju++6@XX(tD#b@
+z5*Rzcx}P=Q@&6UlEv?`I)U3LR_+m}9*U)ff!|B5ksKoE%CXh_5C)j#PTy1y^R!TuT
+zp5RmmdQtEoCC)?JbLtsYg#wO(K<b4Lu6(Z>8g;nhCJLy$I2$1^deHq+snwTLcuAj}
+z3uKfU>fe@ohTL1Lw$$1K7fG|zT-9!=7o9i{Jnhvh)Evfog0nkuV54)<a??50UB5^L
+zCakW5_zbYGs|WVo@lz2%3$#wD8fo}(9-q01ED~S0P`ZV=Ukriv@>m)%AV7#j@!clw
+zKBJUaisbz4@f8L0QTlah$*@xrG+h%KB*hNMm{iYv4v?^pW-okVhfQj_4dvXfhl1mA
+zOP*sU0{^#FY)L_3Btalhz;yipWdp_;hZMR<$&f5Tg%dKjtr?iK^#s$i<~OVKw;}`J
+zOglmcggW(w$+z7c`lD}i8vP&Deb%!ZdrRA7?oQu9pEFJZ#q1Q+3pP&!S@X;}D44wU
+z_B?*xM}l8k+J+gJeZJ1gY4}J>`=!*49u1ODOaj9Cs%43T&75~?;&q+ettRI#@fu43
+z`GnQcyw<TfHk5Lu>tSLB8_dL<ZU39a<aAfpVP(hJTfPIvx}80(vc+j+u#-rl6tvIu
+z@9^jQkl2yienn#`Wn8T7IQl$OxmtkX*(K&~lIqQjD~+lM-b{V#e0i@rX*omVmJV31
+zbIkM@y++Uy0R555XyBQ-89J^M(7*_U8M!$o`%7nll@z$iGN?zJ7&(p&z&nFFC9x~S
+z&3nKJZo=~Z06O$8PvH89dd2naWtV(stwtqnJZp*0>>C$4EzK1Vj)ppez<Ttwq_iUE
+zp#rZ>;AI1uzLFN~IbpJy>}S{pR=jD45BzzhUVl<0RBR2uVf}!HOjbSdAYPoGDdmp`
+z0xV$1be&!PNTet1)^Db}0XI@?;8=7XAXUw#TE+Qrek~3HL}Lquzs9<57Py`lr{9~d
+z5!@I6^x@jplcS*HrHhogH6K<M9_m`f+qGS!C;eKV7F)8(xwdPZ*0eW3WvXtT$Rpo*
+z=V?%xTO-NG_4Y_$rfT<GiaaCncxJmaiW&Hwl6=nEXPp*X7Hssvgj8aIIRou(KiS$%
+zsQUd+P!LW9(-K%E)1#9&o~WRVUv`ouNdT_*`oP{uqh)UU{Y3s?zXRv)PG_SkV$=Hu
+zJ7vVi>^P+J%lWD;$p%=F@pN_tb*kHE4>H&la-<~JyljV#U_Tq>MeHJVwCzdP5vlu$
+zIlID%Gth2Z-dwIEGSbmjPRp0QUjh^{NgZ3ik-jDgg;HKpQrg%<_+0CkiFwagRQc1L
+zD5v~XimL#N_i2RZ(HrPbpGDp}_9B%j#0#wYpq6<<QcuDA&cd9yC`j3ZXP2e%0=B}7
+z%z5B?gW9FEj&4pio)2*?j?Qdckea!aFz9arumq&QqnqEK_+Wo8YSNn|Hy53#!F=#K
+z!P>Gc&Oa<Z)Y@)R<Zil?2yU{@_nR-Gt=xCKlB;g289W>)y$iH-QXzDIrV}}b4ejrF
+z9OE@F?BLN!%odt^!cb{Umdoa$r!XC671+WFJz>|N)T@Mp{>-0UJE`5_T)Alg<6ZZ>
+zF!j3H^h83~avN5sBsjCt*!v3T;l=4sCzf^Z(0p&35lpFsWGd~)<3bP9K-7b@w{K~2
+zp;l~m+m|ztWf=A<QZmydef~aK_i+!^yr(l(4)(@nSL~ui{NNUk%(SD?=zKLaml3Qt
+zuqIn;YS*g8hReYw!~T%Yd%-{tEhY~KDa|9_*i%x%V>vwf%kj6!F3O0+-4vMS9$0)S
+zg~<*G;liu68_EL)ah*JHWb!}*ms)HP^888k$ENdOawgO~eX#@ndg8q0%TUw&@wYSA
+z04jh2ynI_~n}ISvZYEAryT5|?Ll!aGXssl!iS!Iw732{^cx37hv}j`OTNW5jf6z}L
+zUYEq(WwZnR-bWa<|K@es+bU2OZIw+TT}6GkZ3X$hsg71(LG-lOIL_Px3wIBANQ{ea
+z->~K{h7x)Gbm4A0wm(kT?l5lSE)`FHr8d>&f5Vr7MfTmLlQc+wt!bcXUiWk9q-5q?
+z_lxH@UZ>WZn(V!D-U5L!@18ZgN&!{urzX#$`75uYW<}V@v`x=L4+G)2h@{)}_h7RN
+zg@z`o6W^P;7M4Rtq=MUO`}`CcwgPEsc7M>^jf|}TKk=m>wUEpY>Q|k-$m>o=vm~`S
+zCNdbgC$f&4DToc6k8(7Z<EyoCSzJeUQ7B5tp+`w;m*4$w<)mGvbrjO|Giu>^R3BlB
+z%a%m=!bP*@i_SxxSB#fF+=y^we~y1yd^4f}GymP&;QeuaS8(R;!O3K$Mz~=~eauHQ
+zITc4*L&=k_tS>K-+Z3_%>&v314Kf}K8R-$BEPq_Ps4`rdd^K~{(p0{^u6d8ooAKn2
+zy9R&bY!S}h!9i;U#pJ|N3D(4X(5<P@L7;x)(}$z|+wnZ4C7?9tNieZrYWTi1st^#3
+zjDK*iyA~$^^C1w%$nlfo5&_gfx8ddwA$!@V&nnhh4nKKW@Q~Z5M|*CS(YlG84kK~L
+zy~raGvHsON`GnP;rMH2e(npE1*8^;N6p`!1$Jx9_<Zt#<Cq3PNYJ4E@tti*s8vmd*
+zK4Xg~_`TN3doR;O5Pm;o2S$CHMG>dv#FICiVk4vA-X^2A9&s|5lB+uADqj9<i`V#~
+zI2rc5=PuU~PPG9yzPUs09_5uT*%DLla;uMP7D!-U@y5Z%3}1c}l#9%?<|mrS*O+G<
+z`0NU2EyKvRn^-{o%O>cyA5+~FzPnVI_Ik_2N?Iqfr_yMkioSrC<mf~4jv7Y>Y)}I|
+zGiVXOer`j@gN`k);HCG)?T6T>0;*_4GeRqUYRiAnGfuGLTDP`&C_TUQ1w*sRXNbRF
+zNMs=SD*ePS5~J2X1QdR28kD==a#(HovjUrAjiZ6w0DM~8mCJ>pclsuU(Ok2eOepHv
+zbsgXXz(aQ(jR1YWz^2GJ3uvkj=I3ivNu_LqIJYYlWhOp|L+~@@U(2|F1bfbY_<0<S
+zIr#m<ePx%QlGgWTSfmISv6(R%#_0DG60#r8s;PIHK#>6@y&FYV*Ry>z+VQ3fvu1_`
+z+e~{)U7{#YM8aP0Yg4^yzEFQY0(ltrn_uJ4sd1Hqn@>W2{l=F2{HRy<t&O0vQFb1N
+z`8LnvvRp_sXT~0qzNG~qAc$u#t^uP8k@fsE9SbU}nd_|&Hp8FlCX>Q}atXNRzQsMT
+z(Y4-b4iGulJL=MlNtY6^QFk)W-8A&O6b6g>C=q$|r^&G+4A&X*NQ+6<WWKl4P6H!4
+zC8sOpEYJH1KD;Xi;avqpC||F$xusT?on2=p`F>1`epb-OapuY1skVlU6bF&GxU<N1
+z@p$+4KF)Yrpzz@Lh&hbAay1BOt+dl|{v4xTQ_#?SG-M2t$v%rf4ROK4St$Va<vbH$
+zt>`XzJsP5HXyw_?3!*@O0|8r<zNUUO`s}BsyQkp85|>AkbP;n)zl@`Ua@ba+7Vs~I
+z3q{P|;y(4pk>;P9tb3XZZQ98i3v#A-Nj_?}!5cw<K!Q41jL(6;g0JFuk#s{idVNmL
+zJ@+W^ntG^+Rq&;Pn83I*)^ZVxqKA_5*lrq9Z@H9^?tLT2rPy3TC`2lSPhZ-kT2UZ+
+zJa5bmbaA~)3nr#>udl;T)xQ7dwkoil#}63PLzat$-*C#X`)g&bSk}%T%zk{qvPEZ@
+z&oq4|uW_V7<ZYlN&B`WYaD~Y5#LW*qJstnn6j<|5F);wm1*m4c(w_;KB|uaGpuGQ6
+zu-3xD09hfz*=ZU&A3co>D6>Ffh@(@4SM7XvL{RZQ2CjT>r+jX|?vbocPf81$?=9ZK
+z)EhE@weCZ4+Uf=hG!rvqcwlJ$KmmE2<rU-84U9WtLSlT9&ziC?S4vaq6TT;5w$p`m
+z>k?sm1ar>23GXce^I|hzI9QI%j-vKFgpBZH(-VDCRgrg%jqN9f8{hBSb+EkG$84tE
+zHtL?$?}=Cdm;QtxRd)x2@VOKq8}b%`%}x3uEl4mSjnpvj@ZCjB_QC15p&o62;j&k+
+z8EM}z(qgNf0op`q)04=98FQ6)%9c~Go@F`vc~kmnHsM<P+@YOO!;&LipD9(FJS;C)
+zEX5q1wFILIB9VIUOmf$Z>dFY-FQK8Jry-F5oYu!w5ChIIF+#iDqR7E=z(JYSrdzk0
+zY<gU${qP3t3o9K`vFG+XOl5qD5UlNQa~<>mOlhJ+g}wq0YAv<$3y4XV<)5TtP#0FI
+z`G1`n3<AWErJda@5*xEF;e|$Ytl~ZCQT5QY1M8whcCPEENmVa+i=mP9Zr&|#tKicW
+za{0s`8Zy7d?%^ZreEQG5VpR=JnoKM_W(O^KG{m&xtqMvDn$44k*(1Y&4L>fPl+N+k
+z{;Bdj?0ws<OSN-}rkr-=-gStgC;euw!ZHiE1(n`y#wrL%7QC&@F{$h_`(vthoLu|V
+z?>l+drb8_q9j-=DAeds0j9&wUB>7~=D5Pt!>1{sWj%QVB{iuAANI^mZAP=b1{aRmQ
+zuN(`2N#^#Ax)Fjww@^H<p)TumUnS}lh<kb-{P`l?7sze2LKqhc9~cr}`T6i+CtAn2
+z=3BkIBo;r$kvtTSg37-5(|gc*$#`307JLZrlB7Nb8hZFf9MCfSX;kr<(Tev2K+^Bb
+z0o^kJcwjX9+d-le{uJJicLLONS7yTL6UJm!PXuVhhxNjt3e8T6KMPzhF2b#Po1b1{
+z&===F*V#X%pj&+1_~abxU3<{CAmBdgh3)v|Io4KWyi??wd=vWW6vln?XBwydI$q~t
+zWIRn-+gnT{gx0qo<zU|I@UpF+iPCJt&(MOA8=^%dy#Mf#WtE~9DNX^2zsIthjIK=5
+zV0vC>8jcWN8>g3qlagiLk1>@b3CK4q&p==2F_|7ktKq3jA3)WAL9ZUe=tjT#(EJ%n
+zKPC>7{DN`v`C(xT_xJU|&)-O<0R`@pT(@i711z(E`Xbpvxb`-kZ~`I%*lOqswD32r
+z965{H4LqL8P%3TP))S?CJ!_wMk_S-Pr_X2C^I*r}5+cHYVvgjRmu^v~b+h&f{H2C6
+zu?FGZmNAlVp(TqRWR)M3!3Mc)RPEk5s@D_OUhZ<Lq~FsWyFdo;$Zst3ur;vi$AB_M
+zhG|crN50!J%~*U&lhIo=4LYb))bqZ;IKbL~KdwTLfcw2YyBW6MTniANi>pvzWQMgm
+z)V~{@+2nwCbxugweVU&?ZukTcE@U^|OTTlY1bUPsSH^YIshv23s5U4^FtFxAspeDi
+z|4)1071d<dtqWrNP$`OFp?9PyMUajP(y`JBiWCt9=`|pt(yKs31OyeNBS?otrFRjf
+zL+AnlVnPoA&J6y0U!1YWID7o(jB#%Eg<gcWtaq)sW_ji_=VHgWqE)E$(y7Sa?rGmq
+z2R9FQG(Y`vZ}{DCWwOJ={t4eBagWM5<OjJN(;EdcEib%s1wZ+)f^`Fyk?laJ$%g60
+z27pyEp5*r_>f&3L<O>yW32IQ?&|2H${<#j9s`)t|J08C5=!saOP1a4g<628DO79fD
+zpG-8bigIgC<3pA$%qjAqLtc%}tU}F!Pf_iiDPeHE9=xi;>G?l+I6Ses(p0`W^?eq)
+zu=qL2J))F+HKiC;@DGb7c~<X6Kb5|i3`op*wC7XhW3XJ<5_{hw$q7A-u~F7$TxLt=
+zEWn`26w?IgVCzx4-u|4;=V}CFKn{_~&6GUqVnxY`CO?k-0883Iv0<+a8%9FNq#tkr
+zefKT?T*!HE7F}6W7MM~h&UOy>`oTCgBmP>r$czthBcA5bR?X{--pX|7L~>!#Ytygn
+zImW#k+8tbaHxBJlu!;#VeGi7RhS@c0zTL!hVr;=zFNY2le{78qN21wafq={f^@C8z
+zSlOZ}^6>C;K8+;JaLlD(vAiH|qx3nHDqe<}*X-T>j6=o1UNUBrg?K#`T{6*V5BSe~
+zYgk}9C0S|g0ZlJ{P4krt6amS$+z|+DFMq?*xVR@>)g8G6CV;s}v47MA%vIm)D+gL{
+zS7k~0-=+}{HG8IL1tBn?V7$WWHUk{z%wDFYSVM>lB;=K$e+HDLM0U*l9_)TEdX;8e
+z!H)stT|wiUi3`tnPvgpO6tYRPr}2-^K%xR9ae}`P5*EO2fP7!3oi$&>G@qJ_FL3!R
+zrF2H@k$GdQUjWW#Dlispr8`zT(x>d@=x6!x>!QJ(QlO#ePLl-b$AG{Vv5>M|b-bx~
+zM+;GKe|B*+6)njvFiZcQQ=6ythufhclZK67&l}FFv;PC!VI!&M9hqw>^NG4J7+|xY
+zk0t^9IBsz3$myDf9l8Ed(jwWZQeFJv>zQ9WVHj$2<-EcZ$4)s0&Ne>k_`Q>(Ush!A
+zrsLNG<<c-<;w24z?7*|UQ@kj2d`a8WylDUfjhOXVbh*UjGY9}|gS-B!KvlxkU5_b4
+zm;$p8az!me`lL<x3Y2}p1I2+y0^?q&RrS^(`B!&}*^3IfRpBFy-m01%oHnk3QP#XS
+zQo1|8pp+eu_&(sK0c7)fd|#aD{%7jU=@J{!2S>u(QSTBUvw4P+{lE3b>};Krb37IG
+zM#kYU)_mnCaY<`!a9kX2N!H5)Vo7xIB&9}nR+0L*W2)7~!h9=KWLlkjDjxNXCbDG+
+zk?HsVXn~U0KSM+bf5EDgJPj5=x3Iv=vOeI3HVmN-TUS(-pp67zUgHRcNIw+RE1<Cr
+z(h>l<n-9x`sQyGxe&p$Ap9H=>L0iZ%Du_M>GSfiaM`LE0MJXWV5dG;6YKO=8*`UN7
+zuFD>YBjr2~pw0$L4^^luz!4No1zLg2RL$25j9kf<ewH~vt9D&S?d&`LaeLj9l~7w9
+z7ft_7RO~$7LmoH3rN?IY>u9p>>Q*|iq+E9V_AS+16Ndu85E|L3qo^3eu{|c3xj%La
+zQV0pcj`|&csuupz#9wt{Qar1H_!yGA{+k2YrAYjzEiUtp!taQYxzqB160D+BF(Z}m
+z+^=bTH|qF5L5k|`g9^FEliWA2uvW2(R$ok*W*@%3b1vz^emSXuOAHUZvM_ID`4813
+z$<mtKh=;BVZ`_ZegB+wgdIpfi0H?lEIup+`U7wHGXR9P)X97|HNG&qilEQOD76Y|C
+z=E$uE*G|akk<vR~&p^JSz^n5#Sv!<|)f6@RZMFgOI6S9LuoJ6gWn}gb<^an9fQe1E
+zB<1r`X5`y<@|r&40wS)^eP)&!pgj3dQaFvQ)mE^A{I?N#PzP{3a<_$2b-gw-mM?&g
+zGMo%H<1*WIf+e09VgmI5cLA1ppU`&hbu*qbz?r<|Z;iB`JiOMq@~aXkXfRzQIs#zj
+zF1^y9>m48<rZMW9wx8;h*f=S>LA_8;IP~I0iu<Z_MIvzKdn#&;cjpidzZ)*hx!;TU
+zjn}S+c>faajM&CjAhSR*{=!8-K~gIbDRmm{dRFt<)Py;g_+0-dK^LEoyxd$Z{6X6y
+zION#X>I46$c~(p7h7TcIAnrI3Z3jcPoVeT+`jD33#PdLfK;KZ`&8M4ODQDX%8t*j(
+zKJ45;<>T_4B2MheV(2R3#3YZ7@{?(<Pw(x3ZfE6{zaaqOO~ZL&b5!v2=M9HRO<-Mf
+za>8h2i#<b#c{iB&G)_QqLbx6=FnwIGF2_rbQ|Tvn@JHP{Sz?hP@@+5~kxn-+i^<!7
+zF`?g?Bi)w>96J4V)GP^Cl%1n{CzAEPWtn79n&`xY?-gTJ7N4stEaQ*yD-6v~eF0k6
+z8Vsb0_<Z-)uTK_7!^WTH_9YU3vTAr!a&1%dkU`6q!DeUXTt2!MK9s^og+UB{zM<Si
+zi-s(9L|4zpy_$Talovzq-2Tf}r}jmjk4KG)J-76elX~)=-%wjmBPGXZ>)!SvaqOrK
+z&GFoT7}xW!ygKE3SPBjW3saw(Lvp;q#pHf_V>9l=sTi^vNa-E|IW{0$hmjB$OyuaE
+zI0K1ukwN24Th!X)WS0IfBW*XiPv1CjhU@3;JHW>Cgr+@xQ%!Cu_o$e86MZBQ`@WNa
+z8ZT~Vk~kuU^X0QTX-S13WglRB?>sRy-LEX$9<suD=v<@<m3o*j)DjRc-e6Rd?m(m*
+zcp@EoPE~8;2&b_D5OQ*FmiJ8<Q60Ai&RWcez8+(8HLG#*xftM~DxVg5!u9=dV`dJ<
+z_SW<z@x-ZnV~1k+0pa~yhJABp-G4glBoQMXfpF`UuJ_44Pu196Zj)l8`5{o5-}157
+z!?(0jz|lA^zQ>-6@%XMi7ABvkJDt0ceXdten|g)9E94}=6OXtljEV-<PPjGuRzlCY
+zl|8N))nW5b5-}AgJr5c!1P8s`qoCDC*;_@ZJ@`=Xap?zFA=E6oMMiYf?J*9&=&Y0&
+zX9@MQNFCUtkA!fkkJ7%L(ewglf|X8>!om?c?L8U_!-<HRlOjK+HM+9)3a4R+4DuqE
+za|N~Z@ux4=aeLAJZLDXRD08su!)EgkAyg>b?Gm7VV87;S#PiNGv+cd{z1u-Oyiz%}
+zFmgL^Wt7EjH#2pw->C`k!l-&<AC*Vf%DhU&LXRV?iK%6_E-6|2UC!&+)arLI0nonW
+zln;eebysvwf!Hf8*T`@D%)K!qXpgpXJF$$%2@)Vhnyk<M5}6|3+Y03Y#{s-(gQ1+i
+zRH(T!aj8Atx@7F%+2Nzfve-3+YTJtub@YG7m=c)2G9OSv43oF3U}CW6+#_;5+0ZPH
+zEidSXQmm4hGEqAd6WtK7MU-MhN;lS!+|Osc?Fkpk?WB2Sj|Kbvy=T8`WW)zep*%`q
+ze1fL1(>T;Ag1(nqI3gUa_Ls6FWUtxt!-{e6z0pHK-QFw3L?gF7YLkkDj?Z>boda($
+z>t9Bc{oHk09BA10vo2;oK0|zU%h$rlRmf)V>KL(`Xzm-wf1$KCZyNoJ!9*1rKM1^D
+zD0o{r01=~*8ErU)`woNU{Cd+D-iW)UJFd4^D?^$6%Z5jf@tRs^2dc8G|79!H>*R=C
+zhWr(<KvK+x6!0EdRze~;@rI*+sYz;DVtSKWoxF2e4OH#(*X$-z+Y18{4B$~u8U}8=
+z&;QUkhvd;+_OpMa8RtmeOYKM89%KVWB0(+7_ML{pHR6o{GE$sRqg|LT3OL~W+s7&E
+z3uDQH0{MHBmp=cME3(Fin?@i?nua@CPNR!}Bxpw>RVgL>aPeKJEV_l-S62y(pV^3h
+z`>z!#vU1c3ReK;!VWDZSIYD7_kCZ;`0$pFTTBpe08!u&lI-CzM?Ex(@QM=dnQgiqH
+zB*gyn^8(HtW!H<nP%iXG?Oz-(s=PL7iNv2DihzNfS(vG@`4NOl)0`H1-@Mv)zgu;W
+z2X;<-9#I__Z>ox-`RDI!+oTI8Y2RC=&%8aWHD4%sUIXeMVH;ERCf0l?f?VINx8#J;
+zxJ*7ff%DUadyB2&@|e$-O0VTYxhClYrC$_<xE04+do)$MO6>tKuEF@<a<ZT##;S^~
+zvOh6N{*{sBqi-A(y@X0gH)#E&Dal#5P37kEf>GWh=0Kdvt`d)1%H<pRO7nLG2cb+K
+zItPiECJ*wV;&MeGJY)Kg5yWX`km`h#XD)`K$EYULdiwvfrR5XeRT-4}9qGD>vz22A
+z5uY51>Gg(&^%unp^u~TX|H|LX+J#fP9#ZjsdOz!>^D<6b^V7wX|M6^Kw929OpS|>o
+zIbB%joc3O6CFR=OzkAeR^xKM1rPX$^71;Z~!pv}8UHxEW%svT8RQF+xd%&&9ukp6K
+z<I*x=(K``LJMo0u=*3TTQOi2L({RNmAuDaP!nucbXpJC{=1*?PVy<yQZ1ulON@`;_
+zUM*^xtn}C}(MBm(c`W+4Aj3I(6^&CX9g;Ex`w9X)=IYws2pLq5Sgc?5u5bFqlgsXJ
+z^{Xx{<IV1ugg-qBH&A(R-b_28ozL^|+{dHWrsTd&j~X&fH+Cfd#(Jvlw!T+l(R1IG
+z<>8skFPOxy>_&vs+>Fz`BaW7_>bPlSXXMgSY~3Q&ackxFbX=x$>-!RDtHFrXrR4}9
+z&Y7AwZNI4Uay0GI_sM5wv$yD9aaipkq2HB8D;sQm<Hv|Hhdaf-EK!&YJXEg~cB3Ys
+z)H^GJdH>zEkri=M<__o8=A7VZ*QB3^zc88=_bRP@lzrZ(Xv|*Cqaf*;<P~Ezk$r9*
+z{dle}T7f+pYp7(p-CpubzpYWTh3ZX-UuA!^J%?{RRm5%Jy@I9#kRK|6q(mxzDodH+
+zhVOno<{B9l>;IKu_WW>#_boR*Bus6pY59~nG1-Z=y~S8>YqoZ<rey88?nI*Y=b=(u
+zT0><6!Y(gh`A@nGJx5sgR-tdP*$pOV-VlW2n!HGZE6yMumFIbIwAO9&oqeA&Zd21~
+zq0DvU#PkKlJJSPa1gEmdv43C@8}BLa`=_tRw!2kb^Ts=2U39TE{qgz}ieK)@?xM8=
+z)?;F02@l)!x~~wm?r)c+h)Ts?hv{;z_MV*Spb4gHL!?ARMA+u0F@N>iO)Kq{CUag-
+z)46G6h{zOd{Xj3STs%MCZrw(a1GCBUSYm;Bbpb|9?QsjyOTpK4D6WdpakwU_(qW*A
+zD1lK-v*!rVX^%K5uKkOL>%bb%-DiT&OI@DV-87X3A}!KA3i%cN#Qi%B>!N5wWU|aj
+zHE$3gw7aE*ghaj6<)9SNOPAUrSGZfVLmRO@V>mULOni6)#~G2gaY^33Q|Z5Z^Q%Z4
+zvy$melXIJz_)U7V32S(x)P_y4NbL!O<=4WnmK(#-%9|@cf;og<Y{g#X33kx&{&UL7
+zV^aKLGyY(R`HA9==}%UU+q^wk$vh89FQdlU>SXtp<5^ZQ9pMd)!R}lV>sBmS83Ef$
+zY=CgVWe|L3zxZkb^5LJ5<HwE@ttYNrDNC*}yXwt%6qloIE@hN>0C)DoqZYok10vz<
+zV-HdSuzW;BC()_72=%h0W^JnzM3mpcW3sWs^PvA)=a*{I(BTVH`YUxcgEhBCkD8PI
+z5Cfxl5Vh}4pFUlR^;9xljv&AEBn7M)^bu6f&PX5Vn<Ugo{#lZz!OvsMK!hwO!`pgm
+ze;A2l$%Cc1A&<p1F9lqxNWh0r2y`g+*fMup3#+VKKVBFs=V4Z312Ti|S#)tp#P60E
+z3@}l4Q(#mbVjc3uZ4WURP36oRe)0p#;uzF<kMSCy=PA!gJ8z_sU!#=B&6AaUuYE>d
+z`lGv(gXtAP7+`YUU~?NLdp5uOHc4Qem7S0;l#p~C5RP0W1^tErDeivi!X->R^7a3*
+z1z)>0WHK#Ej65qt@8&m(^Pk`N^ky1+oymH;r^{!N&U=4rV(c;ZIpQ@JaW93`@~Wt`
+z0Bk~REaOy=Tj<0m!!x*5&oxjVtK=rcw%!WVyU+Ys*Pof%`&tefa#<)NQU0Kl41NT;
+z9{P9(*$0XONsqr~ph(ubU#k>sM*8E@6|nH~grlT{MCaPJbt4VES+z%P!T2Fkir7OY
+zZzREJW8<ZMLwO=fWMIb0oei~x9O`5yXl<vqwwrmBt&5*jyR;jK`;uOVz>{GoIU^kU
+zS2FrXGIG5aC!^<=<It<*)Eq?Q*!oQyvKe}1{2KA;a_@*_8oaRHBGj2Rkce13lDrb&
+z3;GkDzg{I6id(J{XbW=6dcd$<+P0qc)v5XbsTbiS*kynXN5m*s!k#zuT#RX2EVb{W
+zuW_#TOswdOV%WOz=Bl%-BXtn4%YiMIU!wS$(xv3XBD#O5rcUld(GPEnFGm!=%$RO%
+z+y^~;{otu?wKqwX3kj&RWP{9>7UP|n@hhY+oTFdmuhlwVPlLX(-eogMh6u+$)yF97
+z#5CN6??UwR(pHi5+p1)`T8z<{e0TUvP+mQ`VZU-a<S+YeH?iMgq9~}hk0%IT^Jn~v
+z9@&QDJIrimie<2}ADzM|lRtAdcx5Q&WeNHAdi3<Mv{xn~=oAsnlZPhIn}e%epkv9I
+zq@VMiS+f>n2?DFwP8_m+>9ABNp+kml9?J{j1mf1>I{-Vz!*+;$^_Y9Pla=yg?~$9h
+z^`{?K`7XBOg4W7QecbOU!gj%P6!;cX-o&$%di;4v!!?WQouq~D%MZIAA8?W>TwIr9
+z1O>L_doJI%czB(yzEWiO`y?S`_|?l2vjAxZJigK$r_waO9|6UFspKl>$;<}<#;k4Y
+z!zk&x`aoXE^orxHy^>YQbR0xqAxZyYUxie#kvEyFM^0EP_010nJogI3nv18>33}RW
+zg(K(P6~diJ4jqz~0%527Eag{G4+c0}Q(6xbvs8DB+uN;eeSK>N7uODum+XGPrYD7`
+zE0_l9c&+i3Y3;gO&Ecz49cNqRni~hOHtDaZ4@1nGE$#KAaw<+xyAchI1x`*br34mE
+zII1f|vy`h2d6Y4s@`uL!oa-`K)by5f!u;g@{ITA!r_NriH8Lx6q{wqC*k)4lt3j5F
+zp=aa4pyb+bs5%c+9ZN<i>;`Hxi?3>xaG&x6vqfSFFGo&K`(W0+eb-A_Q2D02D<u;N
+z8REDf)6u=k+YWG7)eDZ0t@D?x#Wc)rTn50`W3dXGVArd7Lkx4*ypI0rEh`(b9+~G3
+zqcm*6psRlU!qn`{**amzl#Ip7@_!4|Hdy1Pw&2;qVy3p1>rQ%|E(BExxv*n@l4-5t
+zy4ub7&l-Dd%-)K5bw+e_9K3~$>GdUh7SGYbi};nr_a@+gym-wuYOrLzJ%k|r;URP(
+zOEL`2x@&EdhVd{TAptuxXAepKJnF2`7Q_n<$H2Vp3YL)2=)-t&O6Ft`(~5<t*+iM?
+zo9phY;!Z;Y-1>q9XGX6w(%jhM%&%tR(R}-jK%FttEg>)iAy)pFY9&3;B*n5OsrmjU
+ztZJZbS$xajJDde&w!O0^QmzVkTD*8o0F4b((_GSp8eT<2-|kh~dF5q0@T#!JuUe7}
+zpE02Y%b|w|sizjwyW{N`cI(a>Uu!`hnE8{3-YcwukUA>NgkHOC8PRAS{8dsv{MlSN
+zf7z*UuEHu@?!&1~!6;i~Od{3|d8Y$R`Pnz+^yey34FTaOwprPlubUI_BM~<naAwMg
+zX26luR;-kbCc4ztFoaIJf^3MJ?+E5y3+ysb&d1ERa!71Pw+%LNyp-Nu3HFSy8w@=4
+z>2}Mslz638c469!(h60oi)pjeC(3z<sa=zVh3%3x(9Yr1&nD;_IAxp-xf<Wik5p`~
+zgBMUAiEm2ttMbGy-sHQ~hQc|0ZRlu%u}mNq8zYks(Xp+~SNC8mz%}Z@HF#F3wjxg~
+zfHe#Az1n?+Pxx%xz4pEW^8j4`;&`vRR>RdYv7g`^P!@c54eUv=&`OUzy&J32cjpbz
+z!Y)OhnkHkXA8{`o_XF?g(~;lD4xYQTW4vTJ@DJ-$CK)a%j>XFLie_2PJH2ZtV6=A+
+zOT?^<PgjvpPS~7L#r-M^Je4ZB{cYUk&CD;^ej>()WePMX-kLuu_nVcKRdd6$dR1=r
+zklAS4BzD}qMI!b#-A{TYoP5YN_MH=(->;@#KO{$oAL&CsGJN(<Z1u=cm`Al@((br2
+z!S%ewu1;!tMqa!Zp-MoB1AngP8%zWVFXrP`o6%?5RAo(nPhDMoaotJ0jL8N08g^wJ
+z9xX{;lJ9oQYQqKLHLJ=?7gKi9%&R@N;o}2s<o5f#=k_T0-79*55An>@xojSTVwGL=
+z<vZ#oR1JorJjy+Mk+CUN_W0Fm=tRn~iQt%$^4}~EOs!cM>Ej=o{}GIW=|KMW@^8nP
+zh+?vvCcSa}&IBn{rJpgrx&ezmxPAic)76vI*m*fII;ZXG7Tf*ApS|L)$g%H>-rO>d
+z!|@41M~^2Nc>b#0uGbB)i@R3Xm#wR7XVkM7wP&0xvw}Eph7SeAIAdE%@HMpnYRaKh
+z+~G|1W5f>L0dEm@ma{A0lyuq*mYPK-79ryr=+wD%=A7STqi*2?f_K2=mRMo+&BCPn
+zVFhK8_<YTn_}S9ZiQR25&Z`^(yYe2<<l5f(_({>)!QbSq0+q?!hHsdA*Yf1IPgyd&
+z3#2mRcZqc<U&dG0o4*r0wzw|VgR7pkjqp{R`SV(X@)pKhNSwo5`B(h-d(2SpZ~fDT
+zegdMtkFxx(6w(t@XoLp;kPnF!V&WoC3`~X&-RDjWsI#a013vJzVT<{~5hYr;)Yf}b
+zaSD}F{4IhLt7YJojIhh44|&1_G2x4rp#C)36BM7M?1u5miLiV8FW7&Gn)34xgzbX)
+zTn6)mfA(jRi~h#$wPMV*bEKBfL?-5}oIYy)H1zYDh-U31yel<9L>zqBuk+UI(brN{
+zt9JTr_bpl=f37IDPszlg9&9G8)@E{Z&qp8HR6>Z$@1omq)@YP0mgm;Rw|L3CBA0Bu
+zJHjDiNA>q&W(7Ic@Yco-6*cp{*r;m;!}lz{ycT?V(%q(-+zo<=bgFkU{BB+*Lh+d~
+zjo9VJ$ZF=PnDnK=RovI0+?~{R&zDO2X6YnE2Ft)*!^vFk=_wHlh!s!MD}Z5F7@k?}
+z8Iy7HaU5y&8Vfut<Md+qg$gnYrBqY16zW3w{H>e-E?nET@LD*wQ)cr;#;A^wC?)J1
+zMf@|P_v-@EjNrSW_Wgw_or1IWHbiHxXvUVnb?_LukJNf^#CY+$ERx)@z68PO&zz!j
+zTdHa6bE3PAupVvKPWjWkmrbc9j>>N<o5GNy^L&h=_Fp8rPZdq6Ounq8`I8d2fTnKo
+z>^sX*N`OaBY#48CyqgG#>oOoGmikVOE4P@HiGXsKy;rB0;fHyuU@d_XmGnCGCIIVh
+zo6K<{RPH+yRbhBP554k2wF*V!==;@w7#nzPE5Yui!sNrymTFN&j$QAGk$-9M6w`jU
+zx&?a}8^o1&i|4!lI`a1TmR5Ar%fYs5T;8knbine}b=c(7U0$J=m`OxZ?|U5Aqi>pk
+ze1YDkLEm}Yps2O-NiuKfHRroAOCJn(oYjIvnPJj{O8bmC6xw;x#(cXC;+*#NwGj&{
+zG_nv=P@{v*7cgA~vsTZkc_Qu1GwIB3{0Qcip3t{SGVQ0?FaLOqsja-3fV~fTGyu#w
+z;r)Gco63xM4ACV>Fpn+x!+Rtqwl8fzhbO~F)y{x1l7i}K**{kum{|f3w_1cheFT9I
+z1S?$`Z|wXQ2i+Ncr-XPcYeW`!qiwMgPK;B0w_d#Q+d1{IW&xDdrrsp|O1e5J2{49A
+z@CF5Mr^d#9S|c=p1vCQZw?->G{09~-zMNCFV7jcZAs&)u=Ci)A)St>GbNEY92Bqzf
+zXD0N7*;hX9hCQt%_DLKv*3YR#f)iV&RVYD9!16i%gTkH%QDN0$-P_YckqiakNVN*Q
+zuwbol;%${WS)6dSFA*DcT{UmhZE{8zn{fNG`c-57S=iGTtW1V2!uS+3DkG0vqFMH!
+zLZ9%VS+&kbE_65VEAsMS2)AYatz1!Sgqq!nbLK0~9^|4|=($e@Q45bUs1$h!F@pkx
+zJ{0fPLPt>DPoJ+4e@ek=;}JvQy>@U(`l|~^?%sOlF46eF`861GBt&9SPniXt8%Cf?
+zpLYd}9cRnueirPTbI`l}UXg&=?kSC{7MDgizwf`BWCDMtUGch%!8S}it~4uR-B|`F
+z-TjzyjKFIwDm16frL4&Bi@=cR24AQB?U3VhIx(DmA2<Wf1{1ETSOG<~W@`A=$EYR%
+zPodfR+P<xQ`^VzBZ3w^6MMB_4mq>RtFYvbUwCuahKN<jEaj($yf^vyBewdMzIo)-w
+z__=G}DOCeT&$>Xl%Nzg!31%Pvi03<eN%VSrXcewo#jLqhlT2q;gS?hp*}k6mGh}G;
+z87hE>ho=q~W#Rv|c`c<Pm^s;V2Z`!eo$=TmbsyV&Ry*{r8ehY&ah%RYSu{+twr95l
+zKn6oNr~tWegE5rn!Mq@cf;R+zyc>(TOw|4MO`ss*kyjLGe3t)kb)P<^igC=KI9!MS
+zkV2<Pl5((9H86~Y7*SIlrKzwuzoRRlFw{yVw<D%i=-<~*v^VO1UY2n@Wb?@<(MxVj
+zJ^+E%(dl9?Iqu{CLs*QHq9Vt+ijjW$)UIt(&5<mov+mqiFAg0D399!{@bE~pVkr{8
+zYs~aDY?$JgJTTcpW~EiXtj2qNGkMj$o^Qp*hW~I4X;8+bef`{y*8A30;S050N&v7F
+zY))<EH%KH96JoE%%3DZo1X1x_oTQpQRO_B+Iy`{e6=-F<R#QE_PZF_f=3!)BMZQtb
+z<8RIQ_HppY8KjP@z=w^*)4SyCuPHS8${z-Dy=$W$-#9m5&zt}8EK|AU$olQLfDF9A
+zZ9jwT8*bXJb9Lz<)!eMDp(nYI3$*>hgL_qu+VLS@_+($h-!p%X#m`0|c`o`*m$<c(
+z>k|OD5CHaIUq5av-}LBn`~FU&mqe6Hbt){)mG4Z;_b2_DNkOO$T4Rg*+G;wNRJ0j<
+zx1VkpTt_Xwv#`_bK1sT`oU;?CO)!qt3$<jE;8X&6Yj5X&dw3ZVkwEGjOrz*B+PGZ&
+zEJ`Qd+>~S*15i?;VjW|a)^sP;U1wY(grD#d^jCeygj2}hTN8r0hfX`coh&k|TI;9_
+zri2V6b_=^a<)I;-rC+0`y=01&ehlf7+IvW{H@1+rF)ZQY?8vI-=4OWVVNgjk<;PZ|
+z&vAS0YIFGW?rZ|+;9~y0G+ObT@cJ3n_iVEr4SJ00dEHiXPn4ZJeS$~*CSx8@J3kE3
+zuW??^^smS^JD~M!2s8&c!P^g)>99@AUA+pE(uGQ31&1duuyu(m>!oS|45jbBYh+_G
+z@S<3Ln-Y^^s?Au9Z1O2$oa`xB#g{pCQ*)y0<@4s?Xa%wW{41J}e0wEzgmlueVQI~E
+zV)&mH(ycp6GYlxYO@6=*R}vaY5PNMF(AqpsZlEK+{=`c5>ec_pe>pOUg58u_XR!|N
+zH1p&_41fUX^Gos%sV2v}>nnX)YH`^nk48is^%go2$r)|C&22idK~JP{%h_rwl<F<?
+z&8PuTh!XEt{$}sdf8?zR*ynFRFZ<9%bKrGwcw60J)l=cLgeEl=`Nlm81oCy=WynH*
+z-!SM0VzL?pqLzo<Zo}joGVS`6k?cN^+CI=LR~c*@1B?|Smj?6BUwtj(bYk!F%TYkH
+z5=+QuCw5GCf1^iuELl@F(smjq*oBAf${87!hes9sG<1HhY)|}Feyny;+rSMKs`?YG
+z*X@h=4{aQqHk}YUACKf&sszOsMyw7%%wPO7wn$mdr461_-SY&mHSqiw*IL_-71j)o
+ztr~H?4t#65dS>9!$#C|c6l@OyDemkgC#+{*7Pe|y`sFeuvKosYNw-9W-dD#AII-dU
+zOTBINI*BE<0Ya(r&Aem?%#4&fpp6JXSKE*B(OGf+eChUm1st=o<cG_hFu7Pf8VnbC
+zsW{6piX~=QD9)a9WpmvehQOI<O{`As1;qfU@Cu;b?EdR1Fpk?1ix`h>$>|xa?=d%)
+zlqB$r{s6{G5y^QXI9LrtLyByj^i(W&Y&m$;H<`mr<-+*`D)B|f4;;CA;Lr`SF~Vkg
+zQ&6lj<9a0^?*Kcn9)7$?vMsizb7S=fMTh|pFHpNc3%NtnS0&Io&8PP{8EX-fnzj-)
+z&IQ0hF;b!2G4xhrJrW7%A|(*WG+nm>Bj4uq8GNv?yI)%&ANrTIL(s;!ul_VGZbm;C
+zMu#J*F|*WBVHNU*OGkg!yu3G99~o;Ta3$|J>wt)C?IU^9srz2u>nCO(AuSdv-E$$*
+zC7mT0*^V9SWWk>H>dOrn12CX$(IJ#SWND;NESNT2{u>y+)vXuc-eao^%^g*&?ElQR
+zpkH$`s@Y67tE*a2K(`(1!W*$5O=X@IzALeJMhVyoZ%K6_9Jmm3LuO@~;OC(2b^D~r
+zD(Z)wUoSj*w0zctA`RR3i+S;XW5Vc6?coY-4n$(mnJF2fVnQbdKUh}MU|(M-JGL6c
+zI5lRA3|b+-H<U7QIrc2^S}e9sQ|AQ3B0n)*qs+hW?GKq0rMXb;q*$I-uY+{n%)X1a
+zyyL^nd7>1zOAQr>C$b)?tG@^-CC1@aB{p%K2oHeCVZP@J?>e!`i|O5Q4sC00mfZ~$
+zz8?7*;ByLg&}tnjaQ*BX@y3bl?;tUND72|=O)!Q0*4fW#3CxX(j(sCoXDiY?>!VKe
+zlZJnhBR;(qC*OCRi8pUmM~L*sNbQh}7=*c!(Z@2_BBY!kL<Bg^=(a*s9l;gcnG#1^
+z>p3FKaAe*grKc&5R)-D<onpsb{3l#C`Lh4JBDAj@Lsrh$TIP>ANe}!W(E8_6Y@|h3
+z1L|01iaNrEeEjzoy&9_2kT2gz_Sg0#M4g{<W$0c(kM#*S7GYu3qDKMFY&ky?5BmH(
+z)e**3o0Dn-MRN_$_G?hh0NhfEx0<oFPi1s{u{zS%t=!PuV!U)RYg)2&R^Szt^L6Mr
+zfLw_*5@{?MLpXqV?WhYc9JxT7f(#t<7nr2?PcxvpX#^kiX1Wc0jK|;+qE|kMQ<5Yz
+zVo&ySa)Hj61=kw9#aU%?opLMn6fRW|YqI_W1=m4nF`t!vZ4xdpStnOJvE+g8zA$K;
+z=B-d3T#A9vO4wo(dUU}8=}C(iVW0XE3dI9fn(G3H!Mii6C$Jt+b})e7wOC$KGm#xe
+z5>lEtO0sh*w=yO!32g1->ZUpRz5<++R_-YP0p{l|GPhVXsKErNbtqsl$3OJ7pAm!Z
+zJqJwQB`;a<ra&{A+79^)yg#%7r+5w@MYr~82D9JgY{>T|hAQur@AkUldYk(j*7|mx
+z;3U*DJL4QX&Q=SSlr^=PfiL1ajciET!R`$0+V&pWZo`n<zW?b0C9zH5*fmAQmH|2^
+zPsHz%vut<6kbzSYlJcH2yQeqOc8TKN!UleDgk0Ddn^cD@dBx(Q<4{6O>7xObg(Fu(
+zDQU&HQBY7(`bgOu7`e(;+I{}e$*bmbMa}z<l>X|<K!|Ymvn&pH{A$&`pXKi%qMAu)
+zC@%fm%<Vc8AGDRCYXz1Nz?)ww=k`%Z5e5X!Z_w26KklGnND%+NAM%p_t+O`&CaV9p
+zBU=B<AOAZ?A^z*ezfDf4{_SH>_wvvG7pK7PQ5*i}^Z(E1?EaSv{a^n0-&y^=WIj-A
+z_P7xL#_I27_o=A<-PQk}Q+xL|{l6>x|MqVE*Ny+bR{!4?*Z)V#$_}@Ch;5_vvXTg=
+R5M=>0)%30wT)zACe*w8mCz}8O
+
+literal 0
+HcmV?d00001
+
+diff --git a/assets/brand/whisprlink-social-preview.svg b/assets/brand/whisprlink-social-preview.svg
+index 680a242..df65268 100644
+--- a/assets/brand/whisprlink-social-preview.svg
++++ b/assets/brand/whisprlink-social-preview.svg
+@@ -1,21 +1,14 @@
+-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+-  <title id="title">WhisprLink — Anonymous conversations, on your terms</title>
+-  <desc id="desc">Open-source Telegram bot for random anonymous chat, personal anonymous inboxes, and threaded replies.</desc>
+-  <rect width="1280" height="640" fill="#171923"/>
+-  <circle cx="1110" cy="80" r="260" fill="#29243D" opacity=".55"/>
+-  <circle cx="150" cy="620" r="280" fill="#23263A" opacity=".55"/>
+-  <rect x="104" y="116" width="106" height="106" rx="28" fill="#27283A" stroke="#4A4768" stroke-width="2"/>
+-  <path d="M131 151c0-8 6-14 14-14h27c8 0 14 6 14 14v24c0 8-6 14-14 14h-14l-13 11v-11h-1c-8 0-13-6-13-14z" fill="none" stroke="#F4F3FA" stroke-width="5" stroke-linejoin="round"/>
+-  <path d="M145 158h27m-27 11h16" fill="none" stroke="#A99BFF" stroke-width="5" stroke-linecap="round"/>
+-  <text x="104" y="300" fill="#A99BFF" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="4">OPEN-SOURCE TELEGRAM BOT</text>
+-  <text x="100" y="390" fill="#F7F6FC" font-family="Inter,Arial,sans-serif" font-size="76" font-weight="700">WhisprLink</text>
+-  <text x="104" y="448" fill="#C7C5D2" font-family="Inter,Arial,sans-serif" font-size="31">Anonymous conversations, on your terms.</text>
+-  <g font-family="Inter,Arial,sans-serif" font-size="21" font-weight="600" fill="#E8E5F7">
+-    <rect x="104" y="510" width="220" height="52" rx="26" fill="#292B3E" stroke="#47445F"/>
+-    <text x="132" y="543">Random chat</text>
+-    <rect x="342" y="510" width="250" height="52" rx="26" fill="#292B3E" stroke="#47445F"/>
+-    <text x="370" y="543">Anonymous inbox</text>
+-    <rect x="610" y="510" width="244" height="52" rx="26" fill="#292B3E" stroke="#47445F"/>
+-    <text x="638" y="543">Threaded replies</text>
++<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="social-title social-desc">
++  <title id="social-title">WhisprLink: Anonymous conversations, on your terms.</title>
++  <desc id="social-desc">Social preview for WhisprLink, an open-source Telegram bot for random chat, anonymous inbox, and private messaging. A large W-shaped symbol with an orange message shape sits beside the wordmark, tagline, and descriptor on a deep charcoal background.</desc>
++  <rect id="background" width="1280" height="640" fill="#18211F"/>
++  <g id="symbol" transform="translate(824.0 128.0) scale(3.0)">
++    <path id="voices" d="M16 31 L42 97 L54.5 65 M73.5 65 L86 97 L112 31" fill="none" stroke="#F4F2EA" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
++    <path id="message" d="M51 40a12 12 0 0 1 24 0v12H63a12 12 0 0 1-12-12z" fill="#E56B45"/>
++  </g>
++  <g id="text" font-family="Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif">
++    <text id="wordmark" x="92" y="292" fill="#F4F2EA" font-size="96" font-weight="600" letter-spacing="-1.5">WhisprLink</text>
++    <text id="tagline" x="96" y="360" fill="#F4F2EA" font-size="34" font-weight="400">Anonymous conversations, on your terms.</text>
++    <text id="descriptor" x="96" y="436" fill="#D8DDD7" font-size="24" font-weight="500">Random Chat · Anonymous Inbox · Private Messaging</text>
+   </g>
+ </svg>
+diff --git a/docs/BRAND_GUIDELINES.md b/docs/BRAND_GUIDELINES.md
+new file mode 100644
+index 0000000..fd25acb
+--- /dev/null
++++ b/docs/BRAND_GUIDELINES.md
+@@ -0,0 +1,175 @@
++# WhisprLink Brand Guidelines
++
++These guidelines keep the WhisprLink identity consistent across the README, documentation, GitHub settings, and any future website or bot profile. They describe the assets in [`assets/brand/`](../assets/brand/).
++
++**Tagline:** Anonymous conversations, on your terms.
++**Descriptor:** Random Chat · Anonymous Inbox · Private Messaging
++
++## 1. Brand concept
++
++WhisprLink is about two people talking without exposing who they are. The identity is built on that idea and nothing else: two voices, one message between them.
++
++The brand should feel private, human, simple, and trustworthy, like an independent piece of software made with care rather than a corporate product. It avoids visual clichés such as shields, padlocks, masks, paper planes, speech bubbles with dots, and chain links.
++
++## 2. The symbol
++
++The symbol is a **W** made from three parts:
++
++| Part | Meaning |
++| --- | --- |
++| **Left stroke** (a "V") | One participant's voice. |
++| **Right stroke** (a "V") | The other participant's voice. |
++| **Orange message shape** | The message, and the link between them. It replaces the middle vertex of the W, so the two voices connect through it rather than touching each other. |
++
++The strokes carry no faces or figures, which keeps both participants anonymous. The message shape is a circle with a single square corner, the quietest possible reduction of a chat bubble. Its square corner points down and to the right, toward the other voice.
++
++The gaps between the strokes and the message shape are deliberate negative space. They express discretion: the participants never meet directly, and the message is the only thing that travels between them.
++
++### Construction
++
++The symbol is drawn on a 128-unit square grid.
++
++| Property | Value |
++| --- | --- |
++| Artwork bounds | 112 × 82 units, centred in the square |
++| Stroke weight | 16 units, round caps and joins |
++| Stroke angle | About 21° from vertical, identical on every arm |
++| Message shape | 24 × 24 units, three corners rounded at 12 units, square corner at bottom right |
++| Gap, strokes to message shape | About 5–6 units |
++| Symmetry | The strokes are mirror images. Only the message shape's square corner breaks the symmetry. |
++
++At small sizes the message shape reads as an orange dot and the fine inner stroke ends soften, but the W silhouette and the single accent remain recognisable.
++
++### Wordmark and lockup
++
++The wordmark is **WhisprLink**, written as one word with capital W and L, in Inter SemiBold (weight 600) with letter-spacing of −0.01 em. In the horizontal lockup the symbol is scaled to 0.75, sits one gap of 28 units from the wordmark, and is centred on the capital height of the text.
++
++## 3. Colour
++
++Deep charcoal is the foundation. Orange is the accent and appears once per composition, as the message shape.
++
++| Role | Colour | Hex | Notes |
++| --- | --- | --- | --- |
++| Primary | Deep charcoal green | `#18211F` | Symbol, wordmark, dark backgrounds, body text. |
++| Brand accent | Warm vivid orange | `#E56B45` | The message shape. Buttons and highlights, used sparingly. |
++| Light background | Warm ivory | `#F4F2EA` | Light backgrounds, and the symbol and wordmark on charcoal. |
++| White surface | Soft white | `#FFFFFF` | Cards and panels. |
++| Secondary text | Muted gray-green | `#77817B` | Captions and supporting text. |
++| Border | Soft gray | `#D8DDD7` | Dividers, outlines, and secondary text on charcoal. |
++| Accent hover | Deep orange | `#C95534` | Hover and pressed states for orange UI elements. Not part of the logo. |
++
++**Do not use purple, violet, lavender, or indigo**, and avoid gradients, glows, and glass effects.
++
++### Contrast reference
++
++Ratios use the WCAG 2.x formula.
++
++| Combination | Ratio | Guidance |
++| --- | --- | --- |
++| Charcoal on ivory | 14.7:1 | Preferred for all text and the symbol. |
++| Charcoal on white | 16.5:1 | Preferred for all text and the symbol. |
++| Ivory on charcoal | 14.7:1 | Preferred for all text on dark. |
++| Soft gray `#D8DDD7` on charcoal | 11.9:1 | Secondary text on dark. |
++| Orange on charcoal | 5.1:1 | Fine for the message shape and large text. |
++| Charcoal on orange | 5.1:1 | Use this for text on orange buttons. |
++| Orange on ivory | 2.9:1 | Below 3:1. Fine for the logo's message shape, **not for text or thin lines.** |
++| White on orange | 3.2:1 | Large or bold text only. Prefer charcoal on orange. |
++| Deep orange on ivory | 3.9:1 | For orange text on light backgrounds use `#C95534`, and only at large sizes. |
++| Muted `#77817B` on ivory | 3.6:1 | Large text and non-essential captions only. |
++| Muted `#77817B` on white | 4.0:1 | Large text and captions only. |
++| Muted `#77817B` on charcoal | 4.1:1 | Large text only. |
++
++## 4. Logo files
++
++All files are in `assets/brand/`. None contain raster images, embedded fonts, or external resources.
++
++| File | Purpose |
++| --- | --- |
++| `whisprlink-icon.svg` | Symbol only, 128 × 128, transparent background. For favicons, avatars, and app icons. The ink colour switches to ivory when the viewer prefers a dark colour scheme. |
++| `whisprlink-logo.svg` | Horizontal lockup, adapts to the viewer's light or dark colour scheme. Default choice where you cannot choose between the light and dark files. |
++| `whisprlink-logo-light.svg` | Lockup fixed for light backgrounds (charcoal and orange). |
++| `whisprlink-logo-dark.svg` | Lockup fixed for dark backgrounds (ivory and orange). |
++| `whisprlink-monochrome.svg` | Single-colour lockup. Uses the CSS `color` property and defaults to charcoal. For print, stamps, embossing, and one-colour contexts. |
++| `whisprlink-social-preview.svg` | 1280 × 640 GitHub social preview, the editable source. |
++| `whisprlink-social-preview.png` | PNG export of the social preview, for upload to GitHub. |
++
++The adaptive files (`whisprlink-icon.svg` and `whisprlink-logo.svg`) follow the operating system or browser colour preference. This may not match a theme chosen inside GitHub, so the README uses the fixed light and dark files inside a `<picture>` element instead.
++
++## 5. Light and dark usage
++
++- **On light backgrounds** use `whisprlink-logo-light.svg`: charcoal symbol and wordmark with the orange message shape.
++- **On dark backgrounds** use `whisprlink-logo-dark.svg`: ivory symbol and wordmark with the same orange message shape.
++- **On one-colour backgrounds or in print** use `whisprlink-monochrome.svg` in charcoal, white, or ivory. All gaps are preserved so the W stays legible without the orange.
++- **On an orange background** use the monochrome file in charcoal. Never place the full-colour logo on orange, because the message shape would disappear.
++
++### Appropriate backgrounds
++
++| Background | File | Notes |
++| --- | --- | --- |
++| Ivory `#F4F2EA` | Light | Primary light surface. |
++| White `#FFFFFF` | Light | |
++| Charcoal `#18211F` | Dark | Primary dark surface, used by the social preview. |
++| Soft gray `#D8DDD7` | Monochrome (charcoal) | The full-colour logo has too little contrast here. |
++| Orange `#E56B45` | Monochrome (charcoal) | |
++| Photographs | Monochrome | Only over calm, evenly lit areas with strong contrast. |
++
++## 6. Clear space
++
++Keep an empty margin around the symbol or lockup on every side equal to **one quarter of the symbol's width** (28 units on the 128-unit grid, or about 21 px in the 434 px lockup). Keep other logos, text, and edges out of this margin.
++
++The SVG files include only a few pixels of padding so the strokes are not clipped. Provide the clear space in your layout.
++
++## 7. Minimum sizes
++
++| Asset | Digital | Print (recommended) |
++| --- | --- | --- |
++| Symbol (`whisprlink-icon.svg`) | 16 px. Use 24 px or larger where the message shape needs to read as more than a dot. | 8 mm |
++| Horizontal lockup | 120 px wide. Below this, use the symbol alone. | 30 mm wide |
++
++The symbol was checked at 16, 24, 32, 48, and 64 px. Print minimums are recommendations and have not been proofed on paper.
++
++## 8. Incorrect usage
++
++Do not:
++
++- Recolour the symbol, especially with purple, violet, lavender, or indigo.
++- Colour the strokes orange or the message shape charcoal in the full-colour logo.
++- Use the light-background logo on dark or mid-tone backgrounds, or the dark-background logo on light ones.
++- Place the full-colour logo on orange, or on photographs and patterns that reduce contrast.
++- Stretch, squash, rotate, skew, or mirror the symbol. Mirroring moves the message shape's square corner.
++- Separate the message shape from the strokes, resize it, or move it.
++- Add outlines, drop shadows, glows, gradients, bevels, or glass effects.
++- Redraw the wordmark in a different typeface, change its weight, or change its capitalisation (write **WhisprLink**, never "Whisprlink" or "whisprlink" in the logo).
++- Put the symbol inside a speech bubble, shield, padlock, or other container.
++- Use the deep orange `#C95534` as a logo colour. It is for UI hover states.
++- Crowd the logo inside its clear space.
++
++## 9. Typography
++
++The wordmark is live text, not outlines, so the SVG files do not embed a font. Each file specifies this font stack, in this order:
++
++```
++Inter, 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif
++```
++
++Inter is the intended face. If it is not installed, the next available system sans-serif is used, and the lockup stays correct because the text is left-aligned beside the symbol. Letter widths will differ slightly between fonts.
++
++For anything where exact letterforms matter (print, merchandise, app store graphics, social images), open the SVG in a vector editor with Inter SemiBold installed and convert the wordmark to outlines first. The social preview PNG was exported with Inter.
++
++| Use | Recommendation |
++| --- | --- |
++| Wordmark | Inter SemiBold (600), letter-spacing −0.01 em |
++| Headings | Inter SemiBold (600) |
++| Body text | Inter Regular (400), or the system sans-serif stack above |
++| Code and identifiers | A system monospace stack, for example `ui-monospace, SFMono-Regular, Menlo, Consolas, monospace` |
++| Persian text | A Persian-capable sans-serif such as Vazirmatn, falling back to the system font. Inter has no Persian glyphs. |
++
++Inter and Vazirmatn are open-source fonts (SIL Open Font License). If you ever bundle them, follow that license.
++
++## 10. GitHub social preview
++
++Upload `assets/brand/whisprlink-social-preview.png` under **Settings → General → Social preview**. GitHub requires a raster image, so the SVG stays as the editable source. If you change the SVG, re-export the PNG at 1280 × 640.
++
++## 11. Design tokens
++
++This repository has no frontend, website, or design system, so there is no token file. The colours and type stack above are the single source of truth. If a website or app is added later, create tokens from this document at that point.
