@@ -3,7 +3,7 @@
 from functools import lru_cache
 from typing import Literal
 
-from pydantic import SecretStr, field_validator
+from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -37,7 +37,7 @@ class Settings(BaseSettings):
     webhook_base_url: str | None = None
 
     # Reserved for future retention logic; no deletion job exists yet.
-    data_retention_days: int = 30
+    data_retention_days: int = Field(default=30, gt=0)
 
     @field_validator("telegram_bot_token")
     @classmethod
