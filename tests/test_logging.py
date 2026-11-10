@@ -91,3 +91,34 @@ def test_sql_statement_logging_stays_quiet() -> None:
     configure_logging("DEBUG", "json")
 
     assert logging.getLogger("sqlalchemy.engine").level == logging.WARNING
+
+def test_exception_tracebacks_and_nested_context_are_redacted(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    configure_logging("ERROR", "json")
+    database_password = "exception-db-password"
+    nested_secret = "nested-authorization-secret"
+
+    try:
+        raise RuntimeError(
+            "connection failed for "
+            f"postgresql+asyncpg://whisprlink:{database_password}@db:5432/whisprlink "
+            f"while calling Telegram token {BOT_TOKEN}"
+        )
+    except RuntimeError:
+        get_logger("whisprlink.test").exception(
+            "database_operation_failed",
+            context={
+                "nested": {
+                    "authorization": nested_secret,
+                    "message_text": "private message content",
+                }
+            },
+        )
+
+    output = capsys.readouterr().out
+    for secret in (database_password, nested_secret, BOT_TOKEN, "private message content"):
+        assert secret not in output
+
+    record = json.loads(output.strip().splitlines()[-1])
+    assert REDACTED in json.dumps(record)
