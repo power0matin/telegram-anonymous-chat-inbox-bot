@@ -487,11 +487,12 @@ async def attempt_for(
     outcome: DeliveryOutcome,
     *,
     message_id: int | None = None,
+    recipient_user_id: int | None = None,
 ) -> int:
     async with database.transaction() as session:
         attempt = MessageDeliveryAttempt(
             message_id=message_id or scenario.message_id,
-            recipient_user_id=scenario.world.owner.id,
+            recipient_user_id=recipient_user_id or scenario.world.owner.id,
             attempt_number=1,
             outcome=outcome,
             finished_at=None if outcome is DeliveryOutcome.PENDING else sa.func.now(),
@@ -563,6 +564,20 @@ async def test_only_the_recipient_can_open_a_message(
     for intruder in (scenario.world.sender, scenario.world.other):
         async with rejected(database, "only the message recipient can open it") as session:
             session.add(open_event(scenario, attempt_id, opened_by_user_id=intruder.id))
+
+
+async def test_open_receipt_must_match_the_delivery_attempt_recipient(
+    database: Database, scenario: OpenScenario
+) -> None:
+    attempt_id = await attempt_for(
+        database,
+        scenario,
+        DeliveryOutcome.DELIVERED,
+        recipient_user_id=scenario.world.sender.id,
+    )
+
+    async with rejected(database, "delivery attempt recipient does not match opener") as session:
+        session.add(open_event(scenario, attempt_id))
 
 
 async def test_a_message_can_be_opened_only_once(
