@@ -92,6 +92,7 @@ def test_sql_statement_logging_stays_quiet() -> None:
 
     assert logging.getLogger("sqlalchemy.engine").level == logging.WARNING
 
+
 def test_exception_tracebacks_and_nested_context_are_redacted(
     capsys: pytest.CaptureFixture[str],
 ) -> None:
