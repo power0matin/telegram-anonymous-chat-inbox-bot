@@ -17,7 +17,7 @@ WhisprLink aims to hide each participant's Telegram identity from the other part
 
 ## Secrets
 
-Read bot tokens, DB/Redis credentials, signing secrets, and webhook secrets from environment/secret management. Keep real .env out of Git. Use a distinct high-entropy secret for link tokens; rotate it by documented procedure. Fail closed when production secrets are missing/weak. Never paste credentials into Issues, logs, screenshots, or support requests.
+Read bot tokens, DB/Redis credentials, signing secrets, and webhook secrets from environment/secret management. Keep real .env out of Git. Use a distinct high-entropy secret for link tokens; rotate it by documented procedure. Fail closed when production secrets are missing/weak. Implemented: with `APP_ENV=production` the process refuses to start unless the bot token looks like a real token, `DEEP_LINK_SECRET` is present, at least 32 characters, not a placeholder and different from the token, at least one admin ID is configured, and the database URL has no placeholder password. Configuration errors name the offending setting but never echo its value. Logs run through a redaction processor that masks secret-like keys, message text/captions, bot-token-shaped strings, and credentials embedded in URLs; SQL parameter logging is disabled. Never paste credentials into Issues, logs, screenshots, or support requests.
 
 ## Authorization
 
