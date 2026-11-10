@@ -65,23 +65,23 @@ jobs:
         run: uv sync --frozen --extra dev --python ${{ matrix.python-version }}
 
       - name: Lint
-        run: uv run ruff check .
+        run: uv run --python ${{ matrix.python-version }} ruff check .
 
       - name: Check formatting
-        run: uv run ruff format --check .
+        run: uv run --python ${{ matrix.python-version }} ruff format --check .
 
       - name: Type check
-        run: uv run mypy
+        run: uv run --python ${{ matrix.python-version }} mypy
 
       - name: Run unit and integration tests
-        run: uv run pytest --cov=whisprlink --cov-report=term-missing
+        run: uv run --python ${{ matrix.python-version }} pytest --cov=whisprlink --cov-report=term-missing
 
       - name: Apply migrations to an empty database
         env:
           DATABASE_URL: ${{ env.TEST_DATABASE_URL }}
         run: |
-          uv run alembic upgrade head
-          uv run alembic check
+          uv run --python ${{ matrix.python-version }} alembic upgrade head
+          uv run --python ${{ matrix.python-version }} alembic check
 
   package:
     name: Package and supply chain
