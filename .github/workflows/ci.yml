@@ -13,36 +13,107 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  REQUIRE_INTEGRATION: "1"
+  TEST_DATABASE_URL: postgresql+asyncpg://whisprlink:ci-only-password@localhost:5432/postgres
+  TEST_REDIS_URL: redis://localhost:6379/15
+
 jobs:
   quality:
     name: Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
         python-version: ["3.12", "3.13", "3.14"]
 
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: whisprlink
+          POSTGRES_PASSWORD: ci-only-password
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U whisprlink"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
 
-      - name: Set up Python
-        uses: actions/setup-python@v6
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v10.0.1
         with:
-          python-version: ${{ matrix.python-version }}
-          cache: pip
+          enable-cache: true
 
-      - name: Install project and development dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e ".[dev]"
+      - name: Install locked dependencies
+        run: uv sync --frozen --extra dev --python ${{ matrix.python-version }}
 
       - name: Lint
-        run: ruff check .
+        run: uv run ruff check .
 
       - name: Check formatting
-        run: ruff format --check .
+        run: uv run ruff format --check .
 
-      - name: Run tests
-        run: pytest
+      - name: Type check
+        run: uv run mypy
+
+      - name: Run unit and integration tests
+        run: uv run pytest --cov=whisprlink --cov-report=term-missing
+
+      - name: Apply migrations to an empty database
+        env:
+          DATABASE_URL: ${{ env.TEST_DATABASE_URL }}
+        run: |
+          uv run alembic upgrade head
+          uv run alembic check
+
+  package:
+    name: Package and supply chain
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v10.0.1
+        with:
+          enable-cache: true
+
+      - name: Install locked dependencies
+        run: uv sync --frozen --extra dev --python 3.12
+
+      - name: Verify the lock file is current
+        run: uv lock --check
+
+      - name: Build sdist and wheel
+        run: uv run python -m build
+
+      - name: Check the built wheel contains the package
+        run: |
+          python3 -m zipfile -l dist/*.whl | grep -q 'whisprlink/persistence/models/users.py'
+
+      - name: Audit runtime dependencies for known vulnerabilities
+        run: |
+          uv export --frozen --no-dev --no-emit-project --no-hashes --output-file audit-requirements.txt
+          uv run pip-audit --requirement audit-requirements.txt --no-deps --disable-pip
+
+      - name: Validate disposable test services compose file
+        run: docker compose -f compose.test.yaml config --quiet
