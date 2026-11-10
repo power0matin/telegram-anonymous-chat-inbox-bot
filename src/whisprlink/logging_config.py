@@ -31,9 +31,7 @@ def _scrub_string(value: str) -> str:
 
 def _is_sensitive_key(key: object) -> bool:
     lowered = str(key).lower()
-    return lowered in _SENSITIVE_EXACT_KEYS or any(
-        part in lowered for part in _SENSITIVE_KEY_PARTS
-    )
+    return lowered in _SENSITIVE_EXACT_KEYS or any(part in lowered for part in _SENSITIVE_KEY_PARTS)
 
 
 def _redact_value(value: Any) -> Any:
