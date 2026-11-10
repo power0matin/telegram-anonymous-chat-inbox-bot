@@ -90,15 +90,21 @@ _TRIGGER_STATEMENTS = (
     """,
     # Only the participant who is the message's recipient may open it.
     """
-    CREATE FUNCTION whisprlink_guard_open_event() RETURNS trigger LANGUAGE plpgsql AS $$
+    CREATE FUNCTION whisprlink_guard_open_event() RETURNS trigger LANGUAGE plpgsql AS $
     DECLARE
         thread_owner bigint;
         thread_sender bigint;
         message_role text;
+        attempt_recipient bigint;
     BEGIN
-        SELECT t.owner_id, t.sender_id, m.sender_role
-        INTO thread_owner, thread_sender, message_role
-        FROM inbox_messages m JOIN inbox_threads t ON t.id = m.thread_id
+        SELECT t.owner_id, t.sender_id, m.sender_role, a.recipient_user_id
+        INTO thread_owner, thread_sender, message_role, attempt_recipient
+        FROM inbox_messages m
+        JOIN inbox_threads t ON t.id = m.thread_id
+        JOIN message_delivery_attempts a
+          ON a.id = NEW.delivery_attempt_id
+         AND a.message_id = m.id
+         AND a.outcome = NEW.attempt_outcome
         WHERE m.id = NEW.message_id;
         IF NOT FOUND THEN
             RETURN NEW;
@@ -108,8 +114,13 @@ _TRIGGER_STATEMENTS = (
             RAISE EXCEPTION 'only the message recipient can open it'
                 USING ERRCODE = 'check_violation', CONSTRAINT = 'inbox_open_by_recipient';
         END IF;
+        IF attempt_recipient IS DISTINCT FROM NEW.opened_by_user_id THEN
+            RAISE EXCEPTION 'delivery attempt recipient does not match opener'
+                USING ERRCODE = 'check_violation',
+                      CONSTRAINT = 'inbox_open_attempt_recipient_mismatch';
+        END IF;
         RETURN NEW;
-    END $$
+    END $
     """,
     """
     CREATE TRIGGER trg_inbox_open_events_guard_insert
@@ -119,11 +130,20 @@ _TRIGGER_STATEMENTS = (
     # Random chat participants must be active users, join open sessions, and not be blocked
     # against the person already in the session.
     """
-    CREATE FUNCTION whisprlink_guard_random_participant() RETURNS trigger LANGUAGE plpgsql AS $$
+    CREATE FUNCTION whisprlink_guard_random_participant() RETURNS trigger LANGUAGE plpgsql AS $
+    DECLARE
+        session_state text;
     BEGIN
-        IF EXISTS (
-            SELECT 1 FROM random_chat_sessions WHERE id = NEW.session_id AND state = 'closed'
-        ) THEN
+        -- Serialize membership inserts against a concurrent session close. The close trigger
+        -- releases all members; without this lock a racing insert could escape that update.
+        SELECT state INTO session_state
+        FROM random_chat_sessions
+        WHERE id = NEW.session_id
+        FOR SHARE;
+        IF NOT FOUND THEN
+            RETURN NEW;
+        END IF;
+        IF session_state = 'closed' THEN
             RAISE EXCEPTION 'session is closed'
                 USING ERRCODE = 'check_violation', CONSTRAINT = 'random_participant_session_closed';
         END IF;
@@ -144,7 +164,7 @@ _TRIGGER_STATEMENTS = (
                 USING ERRCODE = 'check_violation', CONSTRAINT = 'random_participant_blocked_pair';
         END IF;
         RETURN NEW;
-    END $$
+    END $
     """,
     """
     CREATE TRIGGER trg_random_chat_participants_guard_insert
