@@ -1,0 +1,31 @@
+# Disposable PostgreSQL and Redis for local integration tests. Data lives in tmpfs and is lost
+# when the containers stop. Ports are bound to localhost only. Test credentials only.
+name: whisprlink-test
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: whisprlink
+      POSTGRES_PASSWORD: test-only
+      POSTGRES_DB: postgres
+    ports:
+      - "127.0.0.1:55432:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U whisprlink"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    ports:
+      - "127.0.0.1:56379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
