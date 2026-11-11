@@ -10,13 +10,14 @@ A milestone is complete only when its acceptance criteria and tests pass.
 ## M1 — Application foundation
 - [x] Validated settings and structured console logging.
 - [x] aiogram polling entry point and router structure.
-- [ ] PostgreSQL lifecycle, SQLAlchemy models, and Alembic migrations.
-- [ ] Disposable test database workflow.
-- [ ] Redis lifecycle and rate-limit abstraction.
-- [ ] Health checks and graceful shutdown hardening.
+- [x] PostgreSQL lifecycle, SQLAlchemy models, and Alembic migrations.
+- [x] Disposable test database workflow.
+- [x] Redis lifecycle (rate-limit abstraction is scheduled with the rate-limit work in M2/M3).
+- [x] Health checks and graceful shutdown.
+- [x] Dependency lock file (uv.lock) and CI on Python 3.12–3.14 with PostgreSQL and Redis services.
 - [x] Unit tests and initial GitHub Actions CI baseline.
 
-**Exit:** application starts with validated config, clean migrations run, tests need no production services, logs redact secrets and user content. M1 is not complete until persistence, disposable integration tests, and the remaining exit criteria are implemented.
+**Exit:** application starts with validated config, clean migrations run, tests need no production services, logs redact secrets and user content. M1 delivers everything above except the Redis rate-limit abstraction.
 
 ## M2 — Personal inbox vertical slice
 - [ ] User registration and personal deep links.

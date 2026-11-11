@@ -8,7 +8,7 @@
 <p align="center">An open-source Telegram bot combining random one-to-one chat, personal anonymous inboxes, and threaded replies.</p>
 <p align="center"><a href="README.fa.md">فارسی</a> · <a href="docs/PRODUCT_SPEC.md">Product spec</a> · <a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="CONTRIBUTING.md">Contributing</a> · <a href="SECURITY.md">Security</a></p>
 
-> **Status: Pre-alpha.** The repository now contains an executable Python/aiogram scaffold with validated settings, a polling entry point, a minimal /start handler, unit tests, and CI. The anonymous inbox, random-chat matching, database persistence, media delivery, and moderation workflows have not been implemented.
+> **Status: Pre-alpha.** The repository contains the application foundation: validated settings, structured logging, PostgreSQL and Redis lifecycle management with health checks and graceful shutdown, the full database schema with its first Alembic migration, a polling entry point with a minimal /start handler, and unit/integration tests with CI. The anonymous inbox, random-chat matching, media delivery, moderation workflows, and deployment tooling have not been implemented.
 
 ## What is WhisprLink?
 
@@ -61,7 +61,7 @@ Python + aiogram 3, async modular monolith, PostgreSQL + SQLAlchemy 2 + Alembic,
 
 ## Development status
 
-The current executable slice only proves that configuration loads, the bot can start with a valid token, and the /start route responds. PostgreSQL schema/migrations, Redis integration, inbox delivery, threaded replies, random matching, moderation, media support, and production deployment are still unimplemented. There is no production-ready bot. Do not commit a real token or user data.
+The current slice provides the infrastructure foundation (configuration, logging, PostgreSQL schema and migrations, Redis lifecycle, health checks, graceful shutdown) and a /start route that responds. Onboarding, inbox delivery, threaded replies, random matching, moderation, media support, and production deployment are still unimplemented. There is no production-ready bot. Do not commit a real token or user data.
 
 ## Privacy
 

@@ -9,7 +9,7 @@
 <p align="center">پروژه متن‌باز برای ترکیب چت تصادفی دونفره، صندوق پیام ناشناس شخصی و پاسخ‌های زنجیره‌ای در تلگرام.</p>
 <p align="center"><a href="README.md">English</a> · <a href="docs/PRODUCT_SPEC.md">مشخصات محصول</a> · <a href="docs/ARCHITECTURE.md">معماری</a></p>
 
-> **وضعیت: Pre-alpha** — اسکلت اجرایی اولیه با Python و aiogram اضافه شده است: تنظیمات اعتبارسنجی‌شده، اجرای Polling، پاسخ پایه به دستور /start، تست‌های واحد و CI. قابلیت‌های اصلی هنوز پیاده‌سازی نشده‌اند.
+> **وضعیت: Pre-alpha** — زیرساخت پایه آماده شده است: تنظیمات اعتبارسنجی‌شده، لاگ ساختاریافته، مدیریت چرخه‌ی عمر PostgreSQL و Redis همراه با Health Check و خاموشی تمیز، طرح کامل پایگاه داده با نخستین مایگریشن Alembic، اجرای Polling با پاسخ پایه به /start، تست‌های واحد و یکپارچگی و CI. صندوق پیام، چت تصادفی، ارسال رسانه، نظارت و ابزار استقرار هنوز پیاده‌سازی نشده‌اند.
 
 ## قابلیت‌های برنامه‌ریزی‌شده
 
@@ -34,9 +34,9 @@ Python و aiogram 3، معماری Modular Monolith، PostgreSQL، SQLAlchemy 2�
 
 PostgreSQL منبع اصلی وضعیت کاربران و مکالمات خواهد بود. Redis برای هماهنگی موقت و Rate Limit استفاده می‌شود و نباید تنها محل نگهداری وضعیت مکالمه باشد.
 
-## راه‌اندازی اسکلت فعلی
+## راه‌اندازی نسخه‌ی فعلی
 
-به Python 3.12 یا جدیدتر و یک توکن آزمایشی تلگرام نیاز داری.
+به Python 3.12 یا جدیدتر، یک توکن آزمایشی تلگرام و PostgreSQL و Redis در دسترس نیاز داری (برای آزمایش محلی: `docker compose -f compose.test.yaml up -d`؛ جزئیات در docs/DEVELOPMENT.md).
 
 ```powershell
 python -m venv .venv
@@ -46,9 +46,10 @@ python -m pip install -e ".[dev]"
 Copy-Item .env.example .env
 ```
 
-مقدار TELEGRAM_BOT_TOKEN را داخل فایل محلی .env قرار بده و اجرا کن:
+مقدار TELEGRAM_BOT_TOKEN و آدرس‌های DATABASE_URL و REDIS_URL را داخل فایل محلی .env قرار بده، مایگریشن‌ها را اجرا کن و سپس برنامه را راه بینداز:
 
 ```powershell
+alembic upgrade head
 python -m whisprlink
 ```
 

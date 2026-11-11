@@ -1,6 +1,6 @@
 # Architecture
 
-**Status:** proposed architecture — validate during implementation.
+**Status:** proposed architecture; the foundation layer (configuration, logging, PostgreSQL schema/engine, Redis lifecycle, health, application lifecycle) is implemented. Everything else below is still a target.
 
 ## Shape
 
@@ -10,7 +10,7 @@ Telegram Bot API → aiogram adapter → application use cases → domain polici
 
 ## Technology direction
 
-Python 3.12+, aiogram 3, PostgreSQL, SQLAlchemy 2 async, Alembic, Redis, Pydantic Settings, pytest, pytest-asyncio, Ruff, static type checking, and Docker Compose. Resolve and lock dependency versions when executable code is introduced; do not pin unverified versions now.
+Python 3.12+, aiogram 3, PostgreSQL, SQLAlchemy 2 async, Alembic, Redis, Pydantic Settings, pytest, pytest-asyncio, Ruff, static type checking, and Docker Compose. Dependencies are resolved and locked in `uv.lock`; CI installs from it (`uv sync --frozen`).
 
 ## Module boundaries
 
@@ -77,3 +77,11 @@ Use for rate-limit counters, cache, temporary worker coordination, and short-liv
 ## Reliability and tests
 
 Graceful shutdown; recover expired worker leases; explicit migrations; readiness vs liveness checks; structured redacted logs. Test state machines, authorization, DB constraints, concurrent matching, outbox, media adapters, duplicate updates, callback replay, network timeout, cancellation/match race, concurrent opens, and blocked queued deliveries. Tests use disposable infrastructure only.
+
+## Implemented foundation (Phase 1)
+
+- `whisprlink.config`: `InfrastructureSettings` (database, Redis, timeouts; needs no Telegram token, so Alembic and the health check can run without one) and `Settings` (adds Telegram, admin and secret settings, with fail-closed production validation).
+- `whisprlink.persistence`: `Database` owns the async engine (pre-ping, bounded pool, UTC session time zone, `idle_in_transaction_session_timeout` so a transaction cannot sit open while waiting on a network call) and the SQLAlchemy models for the agreed entities.
+- `whisprlink.infrastructure.redis`: `RedisManager` with a blocking, bounded connection pool, retry with backoff, and reconnection after outages.
+- `whisprlink.observability`: readiness report (PostgreSQL required, Redis degrades) and an event-loop heartbeat file for liveness. `python -m whisprlink healthcheck [--liveness]` exposes both.
+- `whisprlink.app`: `Application` starts dependencies with bounded retries, runs polling, and shuts down on SIGINT/SIGTERM in reverse dependency order.
