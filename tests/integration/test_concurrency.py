@@ -106,6 +106,7 @@ async def test_link_rotation_waits_for_an_in_flight_thread_and_then_blocks_new_o
         with pytest.raises(IntegrityError, match="inbox link is not active"):
             await make_thread(session, owner, sender, link=link)
 
+
 async def test_session_close_waits_for_in_flight_participant_insert(
     database: Database,
 ) -> None:
