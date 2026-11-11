@@ -422,6 +422,12 @@ async def test_deleting_a_thread_removes_its_messages_media_attempts_and_receipt
 ) -> None:
     async with database.transaction() as session:
         message = await make_message(session, InboxThread(id=thread_id))
+        await make_message(
+            session,
+            InboxThread(id=thread_id),
+            ParticipantRole.SENDER,
+            reply_to_message_id=message.id,
+        )
         session.add(
             MessageMediaItem(
                 message_id=message.id,
