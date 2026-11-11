@@ -105,3 +105,59 @@ async def test_link_rotation_waits_for_an_in_flight_thread_and_then_blocks_new_o
     async with database.session() as session:
         with pytest.raises(IntegrityError, match="inbox link is not active"):
             await make_thread(session, owner, sender, link=link)
+
+async def test_session_close_waits_for_in_flight_participant_insert(
+    database: Database,
+) -> None:
+    async with database.transaction() as session:
+        user = await make_user(session)
+        chat = await make_random_session(session)
+
+    participant_inserted = asyncio.Event()
+    release_insert_transaction = asyncio.Event()
+    close_started = asyncio.Event()
+
+    async def join_slowly() -> None:
+        async with database.transaction() as session:
+            session.add(RandomChatParticipant(session_id=chat.id, user_id=user.id, slot=1))
+            await session.flush()
+            participant_inserted.set()
+            await release_insert_transaction.wait()
+
+    async def close_session() -> None:
+        close_started.set()
+        async with database.transaction() as session:
+            await session.execute(
+                sa.text(
+                    "UPDATE random_chat_sessions SET state = 'closed', ended_at = now(), "
+                    "end_reason = 'cancelled' WHERE id = :id"
+                ),
+                {"id": chat.id},
+            )
+
+    join_task = asyncio.create_task(join_slowly())
+    close_task: asyncio.Task[None] | None = None
+    try:
+        await asyncio.wait_for(participant_inserted.wait(), timeout=5)
+        close_task = asyncio.create_task(close_session())
+        await asyncio.wait_for(close_started.wait(), timeout=5)
+        await asyncio.sleep(0.25)
+
+        assert not close_task.done(), "closing must wait for the in-flight membership insert"
+    finally:
+        release_insert_transaction.set()
+        tasks = [join_task]
+        if close_task is not None:
+            tasks.append(close_task)
+        await asyncio.gather(*tasks, return_exceptions=True)
+
+    async with database.session() as session:
+        participant = await session.scalar(
+            sa.select(RandomChatParticipant).where(
+                RandomChatParticipant.session_id == chat.id,
+                RandomChatParticipant.user_id == user.id,
+            )
+        )
+
+    assert participant is not None
+    assert participant.left_at is not None, "closing must release the just-inserted participant"
