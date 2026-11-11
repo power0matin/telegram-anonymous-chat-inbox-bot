@@ -90,7 +90,7 @@ _TRIGGER_STATEMENTS = (
     """,
     # Only the participant who is the message's recipient may open it.
     """
-    CREATE FUNCTION whisprlink_guard_open_event() RETURNS trigger LANGUAGE plpgsql AS $
+    CREATE FUNCTION whisprlink_guard_open_event() RETURNS trigger LANGUAGE plpgsql AS $whisprlink$
     DECLARE
         thread_owner bigint;
         thread_sender bigint;
@@ -120,7 +120,7 @@ _TRIGGER_STATEMENTS = (
                       CONSTRAINT = 'inbox_open_attempt_recipient_mismatch';
         END IF;
         RETURN NEW;
-    END $
+    END $whisprlink$
     """,
     """
     CREATE TRIGGER trg_inbox_open_events_guard_insert
@@ -130,7 +130,7 @@ _TRIGGER_STATEMENTS = (
     # Random chat participants must be active users, join open sessions, and not be blocked
     # against the person already in the session.
     """
-    CREATE FUNCTION whisprlink_guard_random_participant() RETURNS trigger LANGUAGE plpgsql AS $
+    CREATE FUNCTION whisprlink_guard_random_participant() RETURNS trigger LANGUAGE plpgsql AS $whisprlink$
     DECLARE
         session_state text;
     BEGIN
@@ -164,7 +164,7 @@ _TRIGGER_STATEMENTS = (
                 USING ERRCODE = 'check_violation', CONSTRAINT = 'random_participant_blocked_pair';
         END IF;
         RETURN NEW;
-    END $
+    END $whisprlink$
     """,
     """
     CREATE TRIGGER trg_random_chat_participants_guard_insert
