@@ -29,22 +29,36 @@ def _scrub_string(value: str) -> str:
     return _URL_CREDENTIALS_PATTERN.sub(rf"\1{REDACTED}\2", value)
 
 
+def _is_sensitive_key(key: object) -> bool:
+    lowered = str(key).lower()
+    return lowered in _SENSITIVE_EXACT_KEYS or any(
+        part in lowered for part in _SENSITIVE_KEY_PARTS
+    )
+
+
+def _redact_value(value: Any) -> Any:
+    """Redact nested structures as well as plain strings (including formatted tracebacks)."""
+    if isinstance(value, str):
+        return _scrub_string(value)
+    if isinstance(value, MutableMapping):
+        for nested_key, nested_value in list(value.items()):
+            value[nested_key] = (
+                REDACTED if _is_sensitive_key(nested_key) else _redact_value(nested_value)
+            )
+        return value
+    if isinstance(value, list):
+        return [_redact_value(item) for item in value]
+    if isinstance(value, tuple):
+        return tuple(_redact_value(item) for item in value)
+    return value
+
+
 def redact_sensitive(
     _logger: Any, _method: str, event_dict: MutableMapping[str, Any]
 ) -> MutableMapping[str, Any]:
     """Mask sensitive keys and credential-shaped substrings before rendering."""
     for key, value in list(event_dict.items()):
-        if key == "event":
-            if isinstance(value, str):
-                event_dict[key] = _scrub_string(value)
-            continue
-        lowered = key.lower()
-        if lowered in _SENSITIVE_EXACT_KEYS or any(
-            part in lowered for part in _SENSITIVE_KEY_PARTS
-        ):
-            event_dict[key] = REDACTED
-        elif isinstance(value, str):
-            event_dict[key] = _scrub_string(value)
+        event_dict[key] = REDACTED if _is_sensitive_key(key) else _redact_value(value)
     return event_dict
 
 
@@ -81,6 +95,9 @@ def configure_logging(
         processors=[
             structlog.stdlib.ProcessorFormatter.remove_processors_meta,
             structlog.processors.format_exc_info,
+            # Exception formatting happens after the first structlog pass. Redact again here,
+            # including nested traceback fields, before anything reaches the output handler.
+            redact_sensitive,
             renderer,
         ],
     )
